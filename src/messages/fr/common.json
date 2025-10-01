@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "projects": "Projets",
+    "stack": "Stack",
+    "journey": "Voyage",
+    "contact": "Contact"
+  },
+  "hero": {
+    "welcome": "Bienvenue à bord",
+    "im": "je suis",
+    "subtitle": "Développeur full-stack JavaScript/TypeScript et passionné d’aviation ✈️. Mon portfolio est conçu comme un voyage : de la piste de décollage (Hero) jusqu’à l’atterrissage (Contact)."
+  },
+  "cta": {
+    "projects": "Voir mes projets",
+    "contact": "Me contacter"
+  },
+  "badge": {
+    "freelance": "Freelance chez Makara Media (prolongé)",
+    "open": "Disponible freelance & CDI/CDD"
+  }
+}

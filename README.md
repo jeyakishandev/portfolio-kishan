@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ✈️ Portfolio Jeya Kishan
 
-## Getting Started
+**Développeur Full-Stack & Passionné d'Aviation**
 
-First, run the development server:
+Un portfolio moderne avec un thème unique de voyage/aviation, développé avec Next.js 15, TypeScript et Framer Motion.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Technologies
+
+- **Framework** : Next.js 15 (App Router)
+- **Language** : TypeScript
+- **Styling** : Tailwind CSS
+- **Animations** : Framer Motion
+- **Internationalisation** : next-intl (FR/EN)
+- **Icons** : Lucide React
+
+## 🛫 Concept
+
+Ce portfolio utilise une métaphore de voyage aérien :
+- **Décollage** → Section Hero
+- **Escales** → Projets
+- **Atterrissage** → Contact
+
+## 📁 Structure
+
+```
+src/
+├── app/
+│   ├── [locale]/          # Routes internationalisées
+│   ├── globals.css        # Styles globaux
+│   └── layout.tsx         # Layout principal
+├── components/
+│   ├── HeroHome.tsx       # Composant principal
+│   ├── MobileNav.tsx      # Navigation mobile
+│   └── ProjectCard.tsx    # Cartes de projets
+└── messages/              # Traductions FR/EN
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Fonctionnalités
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- ✅ **Responsive Design** avec menu mobile
+- ✅ **Animations fluides** avec Framer Motion
+- ✅ **Thème sombre/clair** avec toggle
+- ✅ **Internationalisation** FR/EN
+- ✅ **SEO optimisé** avec métadonnées complètes
+- ✅ **Scroll smooth** entre les sections
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Déploiement
 
-## Learn More
+```bash
+# Installation
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+# Développement
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Production
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📞 Contact
 
-## Deploy on Vercel
+- **GitHub** : [@jeyakishandev](https://github.com/jeyakishandev)
+- **LinkedIn** : [Jeya Kishan Karunanithy](https://www.linkedin.com/in/jeya-kishan-karunanithy)
+- **Email** : jeyakishan.dev@gmail.com
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*"Toujours prêt à décoller vers de nouveaux projets"* 🛫
