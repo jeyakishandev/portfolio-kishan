@@ -274,6 +274,32 @@ Formulaire de contact charge...
       }
     },
     {
+      id: "cv",
+      command: "cv",
+      description: "Télécharger mon CV",
+      category: 'navigation',
+      hasVisualContent: true,
+      action: () => {
+        setModalLoading("cv");
+        const cvOutput = `
+📄 MON CURRICULUM VITAE
+
+Mon CV n'est pas encore disponible, mais sera bientôt ajouté !
+
+En attendant, tu peux découvrir :
+• Mon parcours avec la commande 'experience'
+• Mes compétences avec 'skills'  
+• Mes projets avec 'projects'
+• Me contacter avec 'form'
+
+Le CV sera disponible prochainement ! 🚀
+        `;
+        addOutput("output", cvOutput);
+        setCurrentSection("cv");
+        setTimeout(() => setModalLoading(null), 600);
+      }
+    },
+    {
       id: "gallery",
       command: "gallery",
       description: "Galerie de mes projets",
@@ -415,7 +441,7 @@ Merci pour votre interet !
 
   // Optimisation avec useMemo
   const quickCommands = useMemo(() => 
-    ['about', 'skills', 'projects', 'contact', 'experience', 'form', 'gallery'], 
+    ['about', 'skills', 'projects', 'experience', 'cv', 'contact', 'form', 'gallery'], 
     []
   );
 

@@ -73,6 +73,7 @@ export default function WelcomeGuideModal({
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>skills</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>projects</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>experience</span>
+                <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>cv</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>contact</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>form</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>gallery</span>
@@ -86,6 +87,7 @@ export default function WelcomeGuideModal({
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-yellow-700' : 'bg-yellow-200'}`}>⚡ Skills</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-green-700' : 'bg-green-200'}`}>🖼️ Projects</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-purple-700' : 'bg-purple-200'}`}>💼 Experience</span>
+                <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-orange-700' : 'bg-orange-200'}`}>📄 CV</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-red-700' : 'bg-red-200'}`}>📧 Contact</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-indigo-700' : 'bg-indigo-200'}`}>📝 Form</span>
                 <span className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-pink-700' : 'bg-pink-200'}`}>🎬 Gallery</span>
@@ -116,6 +118,12 @@ export default function WelcomeGuideModal({
               <h5 className={`text-sm font-semibold mb-1 ${darkMode ? 'text-orange-200' : 'text-orange-600'}`}>💼 Expérience Pro</h5>
               <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Commande "experience" ou bouton "Experience" pour mon parcours professionnel
+              </p>
+            </div>
+            <div>
+              <h5 className={`text-sm font-semibold mb-1 ${darkMode ? 'text-orange-200' : 'text-orange-600'}`}>📄 Mon CV</h5>
+              <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Commande "cv" ou bouton "CV" pour télécharger mon curriculum vitae
               </p>
             </div>
             <div>
