@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,26 +53,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-  params
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: "fr" | "en" }>;
 }) {
-  const { locale } = await params;
-
-  // Récupère les messages fournis par le plugin (next-intl.config.ts)
-  const messages = await getMessages();
-
   return (
-    <html lang={locale}>
+    <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
       </body>
     </html>
   );

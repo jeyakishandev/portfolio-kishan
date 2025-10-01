@@ -43,7 +43,10 @@ export default function ImprovedTerminal() {
   const [showProjectDetailModal, setShowProjectDetailModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showWelcomeGuide, setShowWelcomeGuide] = useState(true);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingButton, setLoadingButton] = useState<string | null>(null);
+  const [modalLoading, setModalLoading] = useState<string | null>(null);
+  const [formSubmitting, setFormSubmitting] = useState(false);
 
   // Fonction pour fermer toutes les modales
   const closeAllModals = () => {
@@ -204,6 +207,7 @@ ASTUCE: Cliquez sur les boutons en bas pour naviguer facilement
       hasVisualContent: true,
       action: () => {
         closeAllModals();
+        setModalLoading("about");
         setCurrentSection("about");
         setShowAboutModal(true);
         const aboutOutput = `
@@ -212,6 +216,7 @@ A PROPOS - MODAL OUVERT
 Modal de presentation charge...
         `;
         addOutput("output", aboutOutput);
+        setTimeout(() => setModalLoading(null), 600);
       }
     },
     {
@@ -472,17 +477,40 @@ tutorial/      Guide d'utilisation
     setOutputHistory(prev => [...prev, { type, content, data }]);
   };
 
+  // Composant Skeleton pour le loading des modales
+  const ModalSkeleton = () => (
+    <div className="space-y-4 animate-pulse">
+      <div className={`h-4 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'} w-3/4`}></div>
+      <div className={`h-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'} w-full`}></div>
+      <div className={`h-3 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'} w-5/6`}></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+        <div className={`h-20 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}></div>
+        <div className={`h-20 rounded ${darkMode ? 'bg-gray-700' : 'bg-gray-200'}`}></div>
+      </div>
+    </div>
+  );
+
+
   const executeCommand = (cmd: string) => {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
     setCommandHistory(prev => [...prev, trimmedCmd]);
     addOutput("command", `kishan@portfolio:~$ ${trimmedCmd}`);
+    
+    // Ajouter un loading state
+    setIsLoading(true);
+    addOutput("output", "⏳ Chargement...");
 
     const foundCommand = commands.find(c => c.command === trimmedCmd);
     if (foundCommand) {
-      foundCommand.action();
+      // Simuler un délai de chargement
+      setTimeout(() => {
+        foundCommand.action();
+        setIsLoading(false);
+      }, 800);
     } else {
+      setIsLoading(false);
       addOutput("error", `❌ Commande non trouvée: ${trimmedCmd}
 💡 Tapez 'help' pour voir les commandes disponibles
 🎯 Ou essayez 'tutorial' pour un guide débutant`);
@@ -534,10 +562,10 @@ tutorial/      Guide d'utilisation
 ║                                                              ║
 ╚══════════════════════════════════════════════════════════════╝
 
-kishan@portfolio:~$ 
+kishan@portfolio:~$
         `;
-    addOutput("output", welcomeOutput);
-  }, []);
+        addOutput("output", welcomeOutput);
+      }, []);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -568,13 +596,15 @@ kishan@portfolio:~$
         </div>
         
         <div className="flex items-center gap-3">
-          <button
+          <motion.button
             onClick={() => setDarkMode(!darkMode)}
-            className={`p-2 rounded ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
+            whileHover={{ scale: 1.1, rotate: 15 }}
+            whileTap={{ scale: 0.9 }}
+            className={`p-2 rounded transition-all duration-200 ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
             title="Changer le thème"
           >
             {darkMode ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
+          </motion.button>
           <button
             onClick={() => executeCommand("tutorial")}
             className={`p-2 rounded ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
@@ -696,20 +726,38 @@ kishan@portfolio:~$
                 className={`flex-1 bg-transparent outline-none ${darkMode ? 'text-green-400' : 'text-gray-800'}`}
                 placeholder="Tapez une commande ou utilisez les boutons..."
                 autoComplete="off"
+                disabled={isLoading}
               />
-              <motion.div
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-                className="w-2 h-5 bg-green-400"
-              />
+              {isLoading ? (
+                <motion.div
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                  className="text-yellow-400"
+                >
+                  ⏳
+                </motion.div>
+              ) : (
+                <motion.div
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  className="w-2 h-5 bg-green-400"
+                />
+              )}
             </div>
           </div>
         </div>
       </div>
 
       {/* Formulaire de Contact */}
-      {showForm && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showForm && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Formulaire de Contact
@@ -803,10 +851,30 @@ kishan@portfolio:~$
           {/* Boutons */}
           <div className="flex gap-3 mt-6">
             <button
-              onClick={() => executeCommand("send")}
-              className={`px-6 py-2 rounded ${darkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-500 hover:bg-green-600'} text-white font-medium`}
+              onClick={() => {
+                setFormSubmitting(true);
+                executeCommand("send");
+                setTimeout(() => setFormSubmitting(false), 2000);
+              }}
+              disabled={formSubmitting}
+              className={`px-6 py-2 rounded flex items-center gap-2 font-medium ${
+                formSubmitting 
+                  ? `${darkMode ? 'bg-gray-600' : 'bg-gray-400'} cursor-not-allowed opacity-75`
+                  : darkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-500 hover:bg-green-600'
+              } text-white`}
             >
-              Envoyer le message
+              {formSubmitting ? (
+                <>
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
+                  />
+                  Envoi en cours...
+                </>
+              ) : (
+                "Envoyer le message"
+              )}
             </button>
             <button
               onClick={() => setShowForm(false)}
@@ -815,12 +883,20 @@ kishan@portfolio:~$
               Annuler
             </button>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal About */}
-      {showAboutModal && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showAboutModal && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               À Propos de Kishan
@@ -832,8 +908,12 @@ kishan@portfolio:~$
               Fermer
             </button>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          {modalLoading === "about" ? (
+            <ModalSkeleton />
+          ) : (
+            <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Photo de profil */}
             <div className="flex justify-center">
               <img 
@@ -943,12 +1023,22 @@ kishan@portfolio:~$
               </div>
             </div>
           </div>
-        </div>
-      )}
+            </>
+          )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal Skills */}
-      {showSkillsModal && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-5xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showSkillsModal && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-5xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Mes Compétences Techniques
@@ -1048,12 +1138,20 @@ kishan@portfolio:~$
               </ul>
             </div>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal Projects */}
-      {showProjectsModal && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showProjectsModal && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Mes Projets
@@ -1186,12 +1284,20 @@ kishan@portfolio:~$
               </div>
             </div>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal Gallery */}
-      {showGalleryModal && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showGalleryModal && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Galerie de Projets
@@ -1254,12 +1360,20 @@ kishan@portfolio:~$
               </div>
             ))}
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal Contact */}
-      {showContactModal && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showContactModal && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Contact
@@ -1432,12 +1546,20 @@ kishan@portfolio:~$
               Fermer
             </button>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal Experience */}
-      {showExperienceModal && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-5xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showExperienceModal && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-5xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Mon Parcours & Expériences
@@ -1612,12 +1734,20 @@ kishan@portfolio:~$
               </div>
             </div>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal Détail Projet */}
-      {showProjectDetailModal && selectedProject && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showProjectDetailModal && selectedProject && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-6">
             <h2 className={`text-2xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               {selectedProject.title}
@@ -1865,12 +1995,20 @@ kishan@portfolio:~$
               Fermer
             </button>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal de Bienvenue/Guide */}
-      {showWelcomeGuide && (
-        <div className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}>
+      <AnimatePresence>
+        {showWelcomeGuide && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+          >
           <div className="flex justify-between items-center mb-4">
             <h2 className={`text-lg font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
               Bienvenue sur mon Portfolio Terminal !
@@ -2013,8 +2151,9 @@ kishan@portfolio:~$
               📖 Voir l'aide complète
             </button>
           </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Quick Commands */}
       <div className={`fixed bottom-0 left-0 right-0 z-40 ${darkMode ? 'bg-gray-900/98' : 'bg-white/98'} backdrop-blur border-t border-gray-700 p-4`}>
@@ -2026,22 +2165,39 @@ kishan@portfolio:~$
           {quickCommands.map(cmd => {
             const command = commands.find(c => c.command === cmd);
             return (
-              <button
+              <motion.button
                 key={cmd}
                 onClick={() => {
+                  setLoadingButton(cmd);
                   setCurrentCommand(cmd);
                   executeCommand(cmd);
+                  setTimeout(() => setLoadingButton(null), 1000);
                 }}
-                className={`px-3 py-1 text-xs rounded flex items-center gap-1 transition-colors ${
-                  darkMode 
-                    ? 'bg-gray-800 hover:bg-gray-700' 
-                    : 'bg-gray-200 hover:bg-gray-300'
-                } ${command?.hasVisualContent ? 'border border-blue-500' : ''}`}
+                whileHover={{ scale: loadingButton === cmd ? 1 : 1.05, y: loadingButton === cmd ? 0 : -2 }}
+                whileTap={{ scale: 0.95 }}
+                disabled={loadingButton === cmd}
+                className={`px-3 py-1 text-xs rounded flex items-center gap-1 transition-all duration-200 ${
+                  loadingButton === cmd 
+                    ? `${darkMode ? 'bg-gray-600' : 'bg-gray-300'} cursor-not-allowed opacity-75`
+                    : darkMode
+                    ? 'bg-gray-800 hover:bg-gray-700 hover:shadow-lg' 
+                    : 'bg-gray-200 hover:bg-gray-300 hover:shadow-md'
+                } ${command?.hasVisualContent ? 'border border-blue-500 hover:border-blue-400' : ''}`}
                 title={command?.description}
               >
-                {command?.hasVisualContent && <Eye size={12} />}
-                {cmd}
-              </button>
+                {loadingButton === cmd ? (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                    className="w-3 h-3 border border-current border-t-transparent rounded-full"
+                  />
+                ) : (
+                  <>
+                    {command?.hasVisualContent && <Eye size={12} />}
+                    {cmd}
+                  </>
+                )}
+              </motion.button>
             );
           })}
           
@@ -2072,7 +2228,7 @@ kishan@portfolio:~$
           <span>Ctrl+V: Mode visuel</span>
           <span>Ctrl+G: Galerie</span>
           <span>Ctrl+H: Aide</span>
-          <span>Tab: Autocomplétion</span>
+          <span>Ctrl+L: Effacer</span>
         </div>
       </div>
     </div>
