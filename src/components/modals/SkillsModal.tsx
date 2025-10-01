@@ -16,14 +16,19 @@ export default function SkillsModal({ showSkillsModal, setShowSkillsModal, darkM
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="skills-modal-title"
+      aria-describedby="skills-modal-description"
       className={`fixed top-20 bottom-24 left-4 right-4 max-w-5xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+        <h2 id="skills-modal-title" className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
           Mes Compétences Techniques
         </h2>
         <button
           onClick={() => setShowSkillsModal(false)}
+          aria-label="Fermer la modal Compétences"
           className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
         >
           Fermer

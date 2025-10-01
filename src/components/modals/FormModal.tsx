@@ -60,13 +60,19 @@ export default function FormModal({
           <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             Nom *
           </label>
-          <input
-            type="text"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
-            className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
-            placeholder="Votre nom"
-          />
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              placeholder="Votre nom"
+              required
+              minLength={2}
+              maxLength={50}
+              pattern="[a-zA-ZÀ-ÿ\s\-']+"
+              title="Nom requis (2-50 caractères, lettres uniquement)"
+              aria-describedby="name-error"
+            />
         </div>
 
         {/* Email */}
@@ -74,13 +80,17 @@ export default function FormModal({
           <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             Email *
           </label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
-            placeholder="votre@email.com"
-          />
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              placeholder="votre@email.com"
+              required
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+              title="Email valide requis (ex: exemple@domaine.com)"
+              aria-describedby="email-error"
+            />
         </div>
 
         {/* Sujet */}
@@ -122,13 +132,18 @@ export default function FormModal({
         <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
           Message *
         </label>
-        <textarea
-          value={formData.message}
-          onChange={(e) => setFormData({...formData, message: e.target.value})}
-          rows={4}
-          className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
-          placeholder="Décrivez votre projet ou votre demande..."
-        />
+            <textarea
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+              rows={4}
+              className={`w-full px-3 py-2 border rounded ${darkMode ? 'bg-gray-800 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              placeholder="Décrivez votre projet ou votre demande..."
+              required
+              minLength={10}
+              maxLength={1000}
+              title="Message requis (10-1000 caractères)"
+              aria-describedby="message-error"
+            />
       </div>
 
       {/* Boutons */}

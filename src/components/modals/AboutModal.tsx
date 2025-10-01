@@ -29,14 +29,19 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="about-modal-title"
+      aria-describedby="about-modal-description"
       className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
     >
       <div className="flex justify-between items-center mb-6">
-        <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+        <h2 id="about-modal-title" className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
           À Propos de Kishan
         </h2>
         <button
           onClick={() => setShowAboutModal(false)}
+          aria-label="Fermer la modal À propos"
           className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
         >
           Fermer

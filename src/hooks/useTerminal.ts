@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 
 interface Command {
   id: string;
@@ -339,12 +339,47 @@ Guide d'utilisation charge...
       description: "Envoyer le formulaire de contact",
       category: 'utility',
       action: () => {
+        // Validation renforcée
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']{2,50}$/;
+        
         if (!formData.name || !formData.email || !formData.message) {
           const errorOutput = `
 ERREUR - FORMULAIRE INCOMPLET
 
-Veuillez remplir tous les champs du formulaire.
+Veuillez remplir tous les champs obligatoires.
 Utilisez 'form' pour ouvrir le formulaire.
+          `;
+          addOutput("error", errorOutput);
+          return;
+        }
+
+        if (!nameRegex.test(formData.name)) {
+          const errorOutput = `
+ERREUR - NOM INVALIDE
+
+Le nom doit contenir entre 2 et 50 caractères (lettres uniquement).
+          `;
+          addOutput("error", errorOutput);
+          return;
+        }
+
+        if (!emailRegex.test(formData.email)) {
+          const errorOutput = `
+ERREUR - EMAIL INVALIDE
+
+Veuillez entrer une adresse email valide.
+Exemple: exemple@domaine.com
+          `;
+          addOutput("error", errorOutput);
+          return;
+        }
+
+        if (formData.message.length < 10 || formData.message.length > 1000) {
+          const errorOutput = `
+ERREUR - MESSAGE INVALIDE
+
+Le message doit contenir entre 10 et 1000 caractères.
           `;
           addOutput("error", errorOutput);
           return;
@@ -378,10 +413,14 @@ Merci pour votre interet !
     }
   ];
 
-  const quickCommands = ['about', 'skills', 'projects', 'contact', 'experience', 'form', 'gallery'];
+  // Optimisation avec useMemo
+  const quickCommands = useMemo(() => 
+    ['about', 'skills', 'projects', 'contact', 'experience', 'form', 'gallery'], 
+    []
+  );
 
-  // Fonction executeCommand - EXACT du fichier original
-  const executeCommand = (cmd: string) => {
+  // Fonction executeCommand - Optimisée avec useCallback
+  const executeCommand = useCallback((cmd: string) => {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
@@ -405,10 +444,10 @@ Merci pour votre interet !
     }
 
     setCurrentCommand("");
-  };
+  }, [commands, addOutput]);
 
-  // Fonction handleKeyPress - EXACT du fichier original
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  // Fonction handleKeyPress - Optimisée avec useCallback
+  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       executeCommand(currentCommand);
     } else if (e.key === 'ArrowUp') {
@@ -424,7 +463,7 @@ Merci pour votre interet !
       setOutputHistory([]);
       setCommandHistory([]);
     }
-  };
+  }, [currentCommand, commandHistory, executeCommand]);
 
   // Effets - EXACT du fichier original
   useEffect(() => {

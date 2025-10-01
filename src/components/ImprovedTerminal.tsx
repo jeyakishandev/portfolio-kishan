@@ -200,6 +200,9 @@ export default function ImprovedTerminal() {
                 placeholder="Tapez une commande ou utilisez les boutons..."
                 autoComplete="off"
                 disabled={isLoading}
+                aria-label="Commande terminal"
+                aria-describedby="terminal-help"
+                role="textbox"
               />
               {isLoading ? (
                 <motion.div
@@ -335,6 +338,9 @@ export default function ImprovedTerminal() {
                     : 'bg-gray-200 hover:bg-gray-300 hover:shadow-md'
                 } ${command?.hasVisualContent ? 'border border-blue-500 hover:border-blue-400' : ''}`}
                 title={command?.description}
+                aria-label={`Exécuter la commande ${cmd}: ${command?.description}`}
+                aria-pressed={loadingButton === cmd}
+                role="button"
               >
                 {loadingButton === cmd ? (
                   <motion.div
