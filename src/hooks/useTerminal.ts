@@ -18,7 +18,9 @@ interface Project {
   video?: string;
   technologies: string[];
   github: string;
+  githubBackend?: string;
   live?: string;
+  liveBackend?: string;
   features?: string[];
   stats?: {
     duration?: string;
@@ -90,7 +92,9 @@ export function useTerminal() {
       video: "/api/placeholder/video",
       technologies: ["React 19", "TypeScript", "Express.js", "PostgreSQL", "Sequelize", "JWT", "Argon2", "Zustand", "Swagger", "Vercel", "Railway"],
       github: "https://github.com/kishankarunanithy/Gamer-front",
+      githubBackend: "https://github.com/kishankarunanithy/Gamer-back",
       live: "https://gamer-front-kishankarunanithys-projects.vercel.app",
+      liveBackend: "https://gamer-back-two.vercel.app",
       features: [
         "Authentification JWT sécurisée avec Argon2",
         "CRUD complet des challenges avec catégories",
