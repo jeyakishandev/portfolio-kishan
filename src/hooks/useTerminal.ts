@@ -85,10 +85,10 @@ export function useTerminal() {
       id: "gamerchallenges",
       title: "GamerChallenges",
       description: "Plateforme communautaire de défis gaming où les joueurs créent et participent à des challenges basés sur YouTube avec système de classement",
-      fullDescription: "GamerChallenges est une plateforme web communautaire permettant aux joueurs de créer, participer et suivre des défis vidéo ludiques. Les utilisateurs peuvent soumettre leurs créations vidéo, participer aux challenges et grimper dans le classement. Projet développé en équipe de 4, architecture monorepo (React + Express + PostgreSQL). Authentification JWT, upload de fichiers, système de points, leaderboard.",
+      fullDescription: "GamerChallenges est une plateforme web communautaire permettant aux joueurs de créer, participer et suivre des défis vidéo ludiques. Les utilisateurs peuvent soumettre leurs créations vidéo, participer aux challenges et grimper dans le classement. Projet développé en équipe de 4 avec architecture séparée (Frontend React + Backend Express + PostgreSQL). Authentification JWT, upload de fichiers, système de points, leaderboard. Déploiement Frontend sur Vercel et Backend sur Railway.",
       image: "/api/placeholder/600/400",
       video: "/api/placeholder/video",
-      technologies: ["React 19", "TypeScript", "Express.js", "PostgreSQL", "Sequelize", "JWT", "Argon2", "Zustand", "Swagger", "Monorepo"],
+      technologies: ["React 19", "TypeScript", "Express.js", "PostgreSQL", "Sequelize", "JWT", "Argon2", "Zustand", "Swagger", "Vercel", "Railway"],
       github: "https://github.com/kishankarunanithy/Gamer-front",
       live: "https://gamer-front-kishankarunanithys-projects.vercel.app",
       features: [
