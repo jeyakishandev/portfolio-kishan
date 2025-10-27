@@ -9,7 +9,9 @@ interface Project {
   video?: string;
   technologies: string[];
   github: string;
+  githubBackend?: string;
   live?: string;
+  liveBackend?: string;
 }
 
 interface ProjectDetailModalProps {
@@ -252,7 +254,7 @@ export default function ProjectDetailModal({
       </div>
 
       {/* Liens et actions */}
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {selectedProject.github && (
           <a 
             href={selectedProject.github} 
@@ -261,7 +263,18 @@ export default function ProjectDetailModal({
             className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
           >
             <span>💻</span>
-            Voir le code GitHub
+            Frontend GitHub
+          </a>
+        )}
+        {selectedProject.githubBackend && (
+          <a 
+            href={selectedProject.githubBackend} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+          >
+            <span>⚙️</span>
+            Backend GitHub
           </a>
         )}
         {selectedProject.live && (
@@ -273,6 +286,17 @@ export default function ProjectDetailModal({
           >
             <span>🚀</span>
             Voir la démo
+          </a>
+        )}
+        {selectedProject.liveBackend && (
+          <a 
+            href={selectedProject.liveBackend} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white`}
+          >
+            <span>🔌</span>
+            API Backend
           </a>
         )}
         <button
