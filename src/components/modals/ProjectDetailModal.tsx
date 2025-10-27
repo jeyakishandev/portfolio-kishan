@@ -51,12 +51,12 @@ export default function ProjectDetailModal({
 
       {/* Image/Vidéo du projet */}
       <div className="mb-8">
-        <div className="h-64 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-          <div className="text-white text-center">
-            <div className="text-6xl mb-4">🖥️</div>
-            <p className="text-lg opacity-90">{selectedProject.title}</p>
-            <p className="text-sm opacity-75 mt-2">Screenshot du projet</p>
-          </div>
+        <div className="rounded-lg overflow-hidden shadow-lg">
+          <img 
+            src={selectedProject.image} 
+            alt={`Screenshot de ${selectedProject.title}`}
+            className="w-full h-auto object-cover"
+          />
         </div>
       </div>
 
