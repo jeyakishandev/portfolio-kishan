@@ -82,7 +82,7 @@ export default function ExperienceModal({
             </div>
             <div>
               <h4 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-green-300' : 'text-green-700'}`}>
-                Développeur Full-Stack Freelance – Makara Media (2025)
+                Développeur Full-Stack – Makara Media (2025)
               </h4>
               <p className={`text-sm mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Prolongation après mon stage pour refonte complète d'une plateforme SaaS de gestion multi-réseaux sociaux.

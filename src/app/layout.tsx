@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jeyakishan-portfolio.vercel.app'),
-  title: "Kishan - Développeur Full-Stack & Passionné d'Aviation",
-  description: "Portfolio de Kishan, développeur full-stack JavaScript/TypeScript spécialisé en React, Node.js et PostgreSQL. Passionné d'aviation, disponible en freelance et CDI/CDD.",
+  title: "Kishan - Développeur Full-Stack",
+  description: "Portfolio de Kishan, développeur full-stack spécialisé en React, Node.js et PostgreSQL. Passionné d'aviation, disponible en freelance et CDI/CDD.",
   keywords: "développeur, full-stack, JavaScript, TypeScript, React, Node.js, PostgreSQL, freelance, aviation, portfolio",
   authors: [{ name: "Jeya Kishan Karunanithy" }],
   creator: "Jeya Kishan Karunanithy",
   openGraph: {
-    title: "Kishan - Développeur Full-Stack & Passionné d'Aviation",
-    description: "Portfolio de Kishan, développeur full-stack JavaScript/TypeScript. Passionné d'aviation, disponible en freelance et CDI/CDD.",
+    title: "Kishan - Développeur Full-Stack",
+    description: "Portfolio de Kishan, développeur full-stack. Passionné d'aviation, disponible en freelance et CDI/CDD.",
     url: "https://jeyakishan-portfolio.vercel.app",
     siteName: "Portfolio Kishan",
     images: [
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kishan - Développeur Full-Stack & Passionné d'Aviation",
-    description: "Portfolio de Kishan, développeur full-stack JavaScript/TypeScript. Passionné d'aviation, disponible en freelance et CDI/CDD.",
+    title: "Kishan - Développeur Full-Stack",
+    description: "Portfolio de Kishan, développeur full-stack. Passionné d'aviation, disponible en freelance et CDI/CDD.",
     images: ["/avatar.svg"],
   },
   robots: {
