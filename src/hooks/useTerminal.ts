@@ -395,7 +395,7 @@ Guide d'utilisation charge...
       command: "send",
       description: "Envoyer le formulaire de contact",
       category: 'utility',
-      action: () => {
+      action: async () => {
         // Validation renforcée
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const nameRegex = /^[a-zA-ZÀ-ÿ\s\-']{2,50}$/;
@@ -450,22 +450,70 @@ Nom: ${formData.name}
 Email: ${formData.email}
 Message: ${formData.message}
 
-Simulation d'envoi...
+Connexion au serveur...
         `;
         addOutput("output", sendOutput);
 
-        setTimeout(() => {
-          const successOutput = `
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              subject: formData.subject,
+              message: formData.message,
+              collaboration: formData.collaboration,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            const successOutput = `
 ✅ MESSAGE ENVOYE AVEC SUCCES !
 
 Votre message a ete envoye. Je vous repondrai dans les plus brefs delais.
 
 Merci pour votre interet !
+            `;
+            addOutput("output", successOutput);
+            
+            // Réinitialiser le formulaire
+            setFormData({
+              name: '',
+              email: '',
+              subject: '',
+              message: '',
+              collaboration: '',
+              budget: '',
+              timeline: ''
+            });
+          } else {
+            const errorOutput = `
+❌ ERREUR LORS DE L'ENVOI
+
+${result.error || 'Une erreur est survenue. Veuillez réessayer.'}
+
+Vérifiez votre connexion internet et réessayez.
+            `;
+            addOutput("error", errorOutput);
+          }
+        } catch (error) {
+          const errorOutput = `
+❌ ERREUR DE CONNEXION
+
+Impossible de se connecter au serveur.
+Vérifiez votre connexion internet et réessayez.
+
+Erreur: ${error instanceof Error ? error.message : 'Inconnue'}
           `;
-          addOutput("output", successOutput);
+          addOutput("error", errorOutput);
+        } finally {
           setFormSubmitting(false);
-          setFormData({ name: '', email: '', subject: '', message: '', collaboration: '', budget: '', timeline: '' });
-        }, 2000);
+        }
       }
     }
   ];
