@@ -72,10 +72,10 @@ export default function ImprovedTerminal() {
     handleKeyPress,
   } = useTerminal();
 
-  const handleCommandClick = (cmd: string) => {
+  const handleCommandClick = async (cmd: string) => {
     setLoadingButton(cmd);
     setCurrentCommand(cmd);
-    executeCommand(cmd);
+    await executeCommand(cmd);
     setTimeout(() => setLoadingButton(null), 1000);
   };
 

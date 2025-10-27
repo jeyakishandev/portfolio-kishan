@@ -1,12 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export async function POST(request: NextRequest) {
   try {
+    console.log('📧 API Contact - Début de la requête');
+    
     const { name, email, subject, message, collaboration } = await request.json();
+    console.log('📧 Données reçues:', { name, email, subject, collaboration });
 
     // Validation des données
     if (!name || !email || !message) {
+      console.log('❌ Validation échouée: champs manquants');
       return NextResponse.json(
         { error: 'Tous les champs obligatoires doivent être remplis' },
         { status: 400 }
@@ -16,26 +20,28 @@ export async function POST(request: NextRequest) {
     // Validation email
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
+      console.log('❌ Validation échouée: email invalide');
       return NextResponse.json(
         { error: 'Adresse email invalide' },
         { status: 400 }
       );
     }
 
-    // Configuration du transporteur Gmail
-    const transporter = nodemailer.createTransporter({
-      service: 'gmail',
-      auth: {
-        user: process.env.GMAIL_USER, // Votre email Gmail
-        pass: process.env.GMAIL_APP_PASSWORD, // Mot de passe d'application
-      },
-    });
+    console.log('✅ Validation réussie, configuration de Resend...');
+
+    // Configuration de Resend
+    console.log('📧 Configuration Resend...');
+    console.log('📧 RESEND_API_KEY:', process.env.RESEND_API_KEY ? '✅ Configuré' : '❌ Manquant');
+    
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    console.log('✅ Resend initialisé');
 
     // Configuration de l'email
-    const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER, // Vous recevrez l'email
-      replyTo: email, // L'expéditeur pourra répondre directement
+    console.log('📧 Envoi de l\'email...');
+    const result = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>', // Utilisez votre domaine vérifié
+      to: [process.env.RESEND_TO_EMAIL || 'k.jeyakishan@gmail.com'],
+      replyTo: email,
       subject: `Portfolio Contact: ${subject || 'Nouveau message'}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -63,10 +69,9 @@ export async function POST(request: NextRequest) {
           </div>
         </div>
       `,
-    };
-
-    // Envoi de l'email
-    await transporter.sendMail(mailOptions);
+    });
+    
+    console.log('✅ Email envoyé avec succès:', result.data?.id);
 
     return NextResponse.json(
       { message: 'Email envoyé avec succès' },

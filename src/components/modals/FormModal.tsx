@@ -19,7 +19,7 @@ interface FormModalProps {
   setFormData: (data: FormData) => void;
   formSubmitting: boolean;
   setFormSubmitting: (submitting: boolean) => void;
-  executeCommand: (cmd: string) => void;
+  executeCommand: (cmd: string) => Promise<void>;
 }
 
 export default function FormModal({ 
@@ -149,9 +149,9 @@ export default function FormModal({
       {/* Boutons */}
       <div className="flex gap-3 mt-6">
         <button
-          onClick={() => {
+          onClick={async () => {
             setFormSubmitting(true);
-            executeCommand("send");
+            await executeCommand("send");
             setTimeout(() => setFormSubmitting(false), 2000);
           }}
           disabled={formSubmitting}

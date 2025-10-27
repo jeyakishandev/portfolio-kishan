@@ -525,7 +525,7 @@ Erreur: ${error instanceof Error ? error.message : 'Inconnue'}
   );
 
   // Fonction executeCommand - Optimisée avec useCallback
-  const executeCommand = useCallback((cmd: string) => {
+  const executeCommand = useCallback(async (cmd: string) => {
     const trimmedCmd = cmd.trim();
     if (!trimmedCmd) return;
 
