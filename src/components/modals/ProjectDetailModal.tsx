@@ -288,17 +288,6 @@ export default function ProjectDetailModal({
             Voir la démo
           </a>
         )}
-        {selectedProject.liveBackend && (
-          <a 
-            href={selectedProject.liveBackend} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 ${darkMode ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'} text-white`}
-          >
-            <span>🔌</span>
-            API Backend
-          </a>
-        )}
         <button
           onClick={() => setShowProjectDetailModal(false)}
           className={`px-6 py-3 rounded-lg font-medium ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
