@@ -13,11 +13,20 @@ interface Project {
   id: string;
   title: string;
   description: string;
+  fullDescription?: string;
   image: string;
   video?: string;
   technologies: string[];
   github: string;
   live?: string;
+  features?: string[];
+  stats?: {
+    duration?: string;
+    team?: string;
+    linesOfCode?: string;
+    endpoints?: string;
+    components?: string;
+  };
 }
 
 export function useTerminal() {
@@ -75,12 +84,30 @@ export function useTerminal() {
     {
       id: "gamerchallenges",
       title: "GamerChallenges",
-      description: "Plateforme de défis gaming avec système de classement et authentification JWT",
+      description: "Plateforme communautaire de défis gaming où les joueurs créent et participent à des challenges basés sur YouTube avec système de classement",
+      fullDescription: "GamerChallenges est une plateforme web communautaire permettant aux joueurs de créer, participer et suivre des défis vidéo ludiques. Les utilisateurs peuvent soumettre leurs créations vidéo, participer aux challenges et grimper dans le classement. Projet développé en équipe de 4, architecture monorepo (React + Express + PostgreSQL). Authentification JWT, upload de fichiers, système de points, leaderboard.",
       image: "/api/placeholder/600/400",
       video: "/api/placeholder/video",
-      technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "JWT"],
+      technologies: ["React 19", "TypeScript", "Express.js", "PostgreSQL", "Sequelize", "JWT", "Argon2", "Zustand", "Swagger", "Monorepo"],
       github: "https://github.com/jeyakishandev/gamerchallenges-front",
-      live: "https://gamerchallenges.demo.com"
+      live: "https://gamerchallenges.demo.com",
+      features: [
+        "Authentification JWT sécurisée avec Argon2",
+        "CRUD complet des challenges avec catégories",
+        "Système de participations vidéo YouTube",
+        "Leaderboard et classement des joueurs",
+        "Upload d'avatars et gestion de profil",
+        "Carrousels interactifs (nouveautés & populaires)",
+        "Pagination et filtrage par catégorie/difficulté",
+        "Documentation Swagger complète"
+      ],
+      stats: {
+        duration: "2-3 semaines",
+        team: "4 développeurs",
+        linesOfCode: "~4000 lignes",
+        endpoints: "23 routes API",
+        components: "15+ composants"
+      }
     },
     {
       id: "devboard",
