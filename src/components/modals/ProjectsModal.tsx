@@ -51,56 +51,79 @@ export default function ProjectsModal({
         </button>
       </div>
 
-      <div className="mb-6">
-        <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-          Voici une sélection de projets que j'ai réalisés ou imaginés. Les projets concrets sont 
-          déjà développés, tandis que les projets exploratoires représentent ma volonté d'innover.
-        </p>
+      <div className="mb-8">
+        <div className={`p-6 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-green-500' : 'bg-gray-50 border-green-400'}`}>
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+            Voici une sélection de projets que j'ai réalisés ou imaginés. Les projets concrets sont 
+            déjà développés, tandis que les projets exploratoires représentent ma volonté d'innover.
+          </p>
+        </div>
       </div>
 
       {/* Projets Concrets */}
       <div className="mb-8">
-        <h3 className={`text-lg font-semibold mb-4 ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
-          🚀 Projets Concrets
-        </h3>
+        <div className="flex items-center gap-3 mb-6">
+          <div className={`w-1 h-8 rounded-full ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></div>
+          <h3 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+            Projets Concrets
+          </h3>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
-            <div 
+            <motion.div 
               key={project.id} 
               onClick={() => {
                 setSelectedProject(project);
                 setShowProjectDetailModal(true);
               }}
-              className={`p-6 rounded-lg cursor-pointer transition-all duration-200 hover:scale-105 ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-100 hover:bg-gray-200'}`}
+              whileHover={{ y: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`group relative overflow-hidden rounded-xl cursor-pointer transition-all duration-300 ${darkMode ? 'bg-gray-800 hover:bg-gray-750 border border-gray-700 hover:border-green-500' : 'bg-white hover:bg-gray-50 border border-gray-200 hover:border-green-400'} shadow-lg hover:shadow-xl`}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></div>
-                <h4 className={`font-semibold ${darkMode ? 'text-green-300' : 'text-blue-600'}`}>
-                  {project.title}
-                </h4>
+              {/* Header avec indicateur de statut */}
+              <div className={`p-6 pb-4 ${darkMode ? 'bg-gradient-to-r from-gray-800 to-gray-750' : 'bg-gradient-to-r from-gray-50 to-white'}`}>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                    <h4 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      {project.title}
+                    </h4>
+                  </div>
+                  <div className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-700'}`}>
+                    Actif
+                  </div>
+                </div>
+                
+                <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                  {project.description}
+                </p>
               </div>
-              <p className={`text-sm mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech, index) => (
-                  <span 
-                    key={index}
-                    className={`px-2 py-1 text-xs rounded ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-200 text-gray-700'}`}
-                  >
-                    {tech}
-                  </span>
-                ))}
+
+              {/* Technologies */}
+              <div className="px-6 pb-4">
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, index) => (
+                    <span 
+                      key={index}
+                      className={`px-3 py-1 text-xs font-medium rounded-full ${darkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-200`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex gap-2">
+
+              {/* Actions */}
+              <div className={`px-6 pb-6 flex gap-3 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
                 {project.github && (
                   <a 
                     href={project.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={`px-3 py-1 text-xs rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-900'}`}
                   >
-                    GitHub
+                    Code Source
                   </a>
                 )}
                 {project.live && (
@@ -108,67 +131,101 @@ export default function ProjectsModal({
                     href={project.live} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className={`px-3 py-1 text-xs rounded ${darkMode ? 'bg-green-700 hover:bg-green-600' : 'bg-green-200 hover:bg-green-300'}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${darkMode ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-green-500 hover:bg-green-600 text-white'}`}
                   >
-                    Demo
+                    Voir la démo
                   </a>
                 )}
               </div>
-            </div>
+
+              {/* Effet de survol */}
+              <div className={`absolute inset-0 bg-gradient-to-r ${darkMode ? 'from-green-500/5 to-transparent' : 'from-green-400/5 to-transparent'} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+            </motion.div>
           ))}
         </div>
       </div>
 
       {/* Projets Exploratoires */}
       <div>
-        <h3 className={`text-lg font-semibold mb-4 ${darkMode ? 'text-blue-400' : 'text-gray-800'}`}>
-          🔬 Projets Exploratoires
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className={`p-4 rounded-lg ${darkMode ? 'bg-blue-900/20' : 'bg-blue-50'}`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
-              <h4 className={`font-semibold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
+        <div className="flex items-center gap-3 mb-6">
+          <div className={`w-1 h-8 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+          <h3 className={`text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-gray-800'}`}>
+            Projets Exploratoires
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div 
+            whileHover={{ y: -2, scale: 1.01 }}
+            className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-blue-500' : 'bg-white border-gray-200 hover:border-blue-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'} shadow-sm`}></div>
+              <h4 className={`text-lg font-bold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
                 Agents IA
               </h4>
+              <div className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+                Concept
+              </div>
             </div>
-            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Idée de créer des assistants intelligents pour automatiser certaines tâches.
             </p>
-          </div>
-          <div className={`p-4 rounded-lg ${darkMode ? 'bg-blue-900/20' : 'bg-blue-50'}`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
-              <h4 className={`font-semibold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
+          </motion.div>
+          
+          <motion.div 
+            whileHover={{ y: -2, scale: 1.01 }}
+            className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-blue-500' : 'bg-white border-gray-200 hover:border-blue-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'} shadow-sm`}></div>
+              <h4 className={`text-lg font-bold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
                 SnackNow
               </h4>
+              <div className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+                Concept
+              </div>
             </div>
-            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Concept d'application géolocalisée pour trouver des snacks/restaurants ouverts en temps réel.
             </p>
-          </div>
-          <div className={`p-4 rounded-lg ${darkMode ? 'bg-blue-900/20' : 'bg-blue-50'}`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
-              <h4 className={`font-semibold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
+          </motion.div>
+          
+          <motion.div 
+            whileHover={{ y: -2, scale: 1.01 }}
+            className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-blue-500' : 'bg-white border-gray-200 hover:border-blue-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'} shadow-sm`}></div>
+              <h4 className={`text-lg font-bold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
                 PlanMyTrip AI
               </h4>
+              <div className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+                Concept
+              </div>
             </div>
-            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Idée de planificateur de voyages courts automatisé par IA.
             </p>
-          </div>
-          <div className={`p-4 rounded-lg ${darkMode ? 'bg-blue-900/20' : 'bg-blue-50'}`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
-              <h4 className={`font-semibold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
+          </motion.div>
+          
+          <motion.div 
+            whileHover={{ y: -2, scale: 1.01 }}
+            className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-blue-500' : 'bg-white border-gray-200 hover:border-blue-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'} shadow-sm`}></div>
+              <h4 className={`text-lg font-bold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>
                 AdminZero
               </h4>
+              <div className={`px-2 py-1 rounded-full text-xs font-medium ${darkMode ? 'bg-blue-900/30 text-blue-400' : 'bg-blue-100 text-blue-700'}`}>
+                Concept
+              </div>
             </div>
-            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+            <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
               Concept d'assistant IA pour simplifier les démarches administratives.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.div>
