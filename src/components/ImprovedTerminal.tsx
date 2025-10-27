@@ -1,6 +1,6 @@
 "use client";
 import { AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Mail, Sun, Moon, Terminal, ChevronRight, HelpCircle, MousePointer, Zap, BookOpen, Image, Play, Briefcase, FileText } from "lucide-react";
+import { Github, Mail, Sun, Moon, HelpCircle, MousePointer, Zap, BookOpen, Image, Play, Briefcase, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTerminal } from "@/hooks/useTerminal";
 import AboutModal from "@/components/modals/AboutModal";
@@ -23,8 +23,6 @@ export default function ImprovedTerminal() {
     outputHistory,
     showVisualMode,
     setShowVisualMode,
-    showTutorial,
-    setShowTutorial,
     showForm,
     setShowForm,
     
@@ -88,10 +86,6 @@ export default function ImprovedTerminal() {
   const handleShowTutorial = () => {
     closeAllModals();
     setShowWelcomeGuide(true);
-  };
-
-  const handleToggleVisual = () => {
-    setShowVisualMode(!showVisualMode);
   };
 
   return (

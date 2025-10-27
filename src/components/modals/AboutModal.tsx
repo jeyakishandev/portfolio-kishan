@@ -78,8 +78,8 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                   Mon Parcours
                 </h4>
                 <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Après une reconversion réussie et l'obtention du diplôme Développeur Web & Web Mobile, 
-                  j'ai développé plusieurs projets variés qui illustrent ma polyvalence.
+                  Après une reconversion réussie et l&apos;obtention du diplôme Développeur Web & Web Mobile, 
+                  j&apos;ai développé plusieurs projets variés qui illustrent ma polyvalence.
                 </p>
               </div>
 
@@ -88,7 +88,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                   Spécialisation IA
                 </h4>
                 <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  En parallèle, je m'intéresse aux agents IA et à la création d'applications innovantes 
+                  En parallèle, je m&apos;intéresse aux agents IA et à la création d&apos;applications innovantes 
                   capables de résoudre des problèmes concrets.
                 </p>
               </div>

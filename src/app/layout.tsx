@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../globals.css";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://jeyakishan-portfolio.vercel.app'),
   title: "Kishan - Développeur Full-Stack & Passionné d'Aviation",
   description: "Portfolio de Kishan, développeur full-stack JavaScript/TypeScript spécialisé en React, Node.js et PostgreSQL. Passionné d'aviation, disponible en freelance et CDI/CDD.",
   keywords: "développeur, full-stack, JavaScript, TypeScript, React, Node.js, PostgreSQL, freelance, aviation, portfolio",
