@@ -89,7 +89,7 @@ export function useTerminal() {
       image: "/api/placeholder/600/400",
       video: "/api/placeholder/video",
       technologies: ["React 19", "TypeScript", "Express.js", "PostgreSQL", "Sequelize", "JWT", "Argon2", "Zustand", "Swagger", "Monorepo"],
-      github: "https://github.com/jeyakishandev/gamerchallenges-front",
+      github: "https://github.com/kishankarunanithy/Gamer-front",
       live: "https://gamer-front-kishankarunanithys-projects.vercel.app",
       features: [
         "Authentification JWT sécurisée avec Argon2",
