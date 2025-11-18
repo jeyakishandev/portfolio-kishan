@@ -70,6 +70,8 @@ export default function ImprovedTerminal() {
     closeAllModals,
     executeCommand,
     handleKeyPress,
+    handleLikeProject,
+    handleAddComment,
   } = useTerminal();
 
   const handleCommandClick = async (cmd: string) => {
@@ -301,6 +303,8 @@ export default function ImprovedTerminal() {
           setShowProjectDetailModal={setShowProjectDetailModal}
           darkMode={darkMode}
           selectedProject={selectedProject}
+          onLikeProject={handleLikeProject}
+          onAddComment={handleAddComment}
         />
       </AnimatePresence>
 

@@ -9,27 +9,7 @@ interface Command {
   hasVisualContent?: boolean;
 }
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  fullDescription?: string;
-  image: string;
-  video?: string;
-  technologies: string[];
-  github: string;
-  githubBackend?: string;
-  live?: string;
-  liveBackend?: string;
-  features?: string[];
-  stats?: {
-    duration?: string;
-    team?: string;
-    linesOfCode?: string;
-    endpoints?: string;
-    components?: string;
-  };
-}
+import { Project, Comment } from '@/types/Project';
 
 export function useTerminal() {
   // Tous les états du fichier original
@@ -111,7 +91,25 @@ export function useTerminal() {
         linesOfCode: "~4000 lignes",
         endpoints: "23 routes API",
         components: "15+ composants"
-      }
+      },
+      likes: 42,
+      comments: [
+        {
+          id: "1",
+          author: "Alex Martin",
+          content: "Excellent projet ! L'interface est vraiment fluide et le concept est génial. Bravo pour le travail d'équipe !",
+          timestamp: Date.now() - 86400000,
+          avatar: "👨‍💻"
+        },
+        {
+          id: "2",
+          author: "Sarah Chen",
+          content: "J'adore l'idée des défis gaming ! Est-ce que vous prévoyez d'ajouter plus de types de challenges ?",
+          timestamp: Date.now() - 172800000,
+          avatar: "👩‍🎮"
+        }
+      ],
+      isLiked: false
     },
     {
       id: "devboard",
@@ -120,7 +118,18 @@ export function useTerminal() {
       image: "/api/placeholder/600/400",
       technologies: ["React", "Node.js", "Docker", "Vitest"],
       github: "https://github.com/jeyakishandev",
-      live: "https://devboard.demo.com"
+      live: "https://devboard.demo.com",
+      likes: 28,
+      comments: [
+        {
+          id: "3",
+          author: "Marie Dubois",
+          content: "Très utile pour organiser les tâches ! L'interface est intuitive.",
+          timestamp: Date.now() - 259200000,
+          avatar: "👩‍💼"
+        }
+      ],
+      isLiked: false
     },
     {
       id: "luxtime",
@@ -129,7 +138,25 @@ export function useTerminal() {
       image: "/api/placeholder/600/400",
       technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Stripe"],
       github: "https://github.com/jeyakishandev/luxtime",
-      live: "https://luxtime.demo.com"
+      live: "https://luxtime.demo.com",
+      likes: 35,
+      comments: [
+        {
+          id: "4",
+          author: "Pierre Moreau",
+          content: "Design élégant et fonctionnalités e-commerce complètes. Bravo !",
+          timestamp: Date.now() - 345600000,
+          avatar: "👨‍💼"
+        },
+        {
+          id: "5",
+          author: "Emma Laurent",
+          content: "L'intégration Stripe fonctionne parfaitement. Très professionnel !",
+          timestamp: Date.now() - 432000000,
+          avatar: "👩‍💻"
+        }
+      ],
+      isLiked: false
     },
     {
       id: "conquete-monde",
@@ -138,13 +165,84 @@ export function useTerminal() {
       image: "/api/placeholder/600/400",
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MDX"],
       github: "https://github.com/jeyakishandev/conquete-monde",
-      live: "https://conquete-monde.demo.com"
+      live: "https://conquete-monde.demo.com",
+      likes: 19,
+      comments: [
+        {
+          id: "6",
+          author: "Lucas Voyage",
+          content: "Super blog ! Les photos sont magnifiques et les récits très inspirants.",
+          timestamp: Date.now() - 518400000,
+          avatar: "🧳"
+        }
+      ],
+      isLiked: false
     }
   ];
 
   // Fonction addOutput - EXACT du fichier original
   const addOutput = (type: 'command' | 'output' | 'error' | 'tutorial' | 'visual', content: string, data?: any) => {
     setOutputHistory(prev => [...prev, { type, content, data }]);
+  };
+
+  // Fonctions de gestion des likes et commentaires avec localStorage
+  const handleLikeProject = (projectId: string) => {
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
+
+    // Toggle du like
+    const isCurrentlyLiked = project.isLiked || false;
+    const newLikeCount = isCurrentlyLiked ? project.likes - 1 : project.likes + 1;
+    
+    // Mise à jour avec localStorage
+    const likedProjects = JSON.parse(localStorage.getItem('likedProjects') || '[]');
+    const projectIndex = likedProjects.indexOf(projectId);
+    
+    if (isCurrentlyLiked) {
+      // Retirer le like
+      if (projectIndex > -1) {
+        likedProjects.splice(projectIndex, 1);
+      }
+    } else {
+      // Ajouter le like
+      if (projectIndex === -1) {
+        likedProjects.push(projectId);
+      }
+    }
+    
+    localStorage.setItem('likedProjects', JSON.stringify(likedProjects));
+    
+    // Mise à jour du projet
+    project.isLiked = !isCurrentlyLiked;
+    project.likes = newLikeCount;
+    
+    addOutput('output', `❤️ ${isCurrentlyLiked ? 'Like retiré' : 'Projet liké'} ! (${newLikeCount} likes)`);
+  };
+
+  const handleAddComment = (projectId: string, author: string, content: string, authorEmail?: string) => {
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
+
+    const newComment: Comment = {
+      id: Date.now().toString(),
+      author,
+      content,
+      timestamp: Date.now(),
+      avatar: '👤'
+    };
+
+    // Ajouter le commentaire au projet
+    project.comments.push(newComment);
+    
+    // Sauvegarder dans localStorage
+    const comments = JSON.parse(localStorage.getItem('projectComments') || '{}');
+    if (!comments[projectId]) {
+      comments[projectId] = [];
+    }
+    comments[projectId].push(newComment);
+    localStorage.setItem('projectComments', JSON.stringify(comments));
+    
+    addOutput('output', `💬 Commentaire ajouté par ${author} !`);
   };
 
   // Toutes les commandes - EXACT du fichier original
@@ -595,6 +693,7 @@ kishan@portfolio:~$
     }
   }, [currentCommand]);
 
+
   // Retour de tous les états et fonctions
   return {
     // États de base
@@ -661,5 +760,7 @@ kishan@portfolio:~$
     addOutput,
     executeCommand,
     handleKeyPress,
+    handleLikeProject,
+    handleAddComment,
   };
 }

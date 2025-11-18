@@ -1,32 +1,27 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import LikeButton from "../LikeButton";
+import CommentsSection from "../CommentsSection";
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  video?: string;
-  technologies: string[];
-  github: string;
-  githubBackend?: string;
-  live?: string;
-  liveBackend?: string;
-}
+import { Project, Comment } from '@/types/Project';
 
 interface ProjectDetailModalProps {
   showProjectDetailModal: boolean;
   setShowProjectDetailModal: (show: boolean) => void;
   darkMode: boolean;
   selectedProject: Project | null;
+  onLikeProject?: (projectId: string) => void;
+  onAddComment?: (projectId: string, author: string, content: string) => void;
 }
 
 export default function ProjectDetailModal({ 
   showProjectDetailModal, 
   setShowProjectDetailModal, 
   darkMode, 
-  selectedProject 
+  selectedProject,
+  onLikeProject,
+  onAddComment
 }: ProjectDetailModalProps) {
   const [showImageModal, setShowImageModal] = useState(false);
   
@@ -398,6 +393,28 @@ export default function ProjectDetailModal({
             )}
           </ul>
         </div>
+      </div>
+
+      {/* Section Likes et Commentaires */}
+      <div className="mt-8 space-y-6">
+        {/* Bouton Like */}
+        <div className="flex justify-center">
+          <LikeButton
+            likes={selectedProject.likes}
+            isLiked={selectedProject.isLiked || false}
+            onLike={() => onLikeProject?.(selectedProject.id)}
+            darkMode={darkMode}
+            projectId={selectedProject.id}
+          />
+        </div>
+
+        {/* Section Commentaires */}
+        <CommentsSection
+          comments={selectedProject.comments}
+          onAddComment={(author, content) => onAddComment?.(selectedProject.id, author, content)}
+          darkMode={darkMode}
+          projectId={selectedProject.id}
+        />
       </div>
 
       {/* Liens et actions */}

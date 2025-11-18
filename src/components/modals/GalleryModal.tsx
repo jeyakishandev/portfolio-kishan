@@ -1,16 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  video?: string;
-  technologies: string[];
-  github: string;
-  live?: string;
-}
+import { Project } from '@/types/Project';
 
 interface GalleryModalProps {
   showGalleryModal: boolean;
