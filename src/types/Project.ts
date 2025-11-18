@@ -1,11 +1,3 @@
-export interface Comment {
-  id: string;
-  author: string;
-  content: string;
-  timestamp: number;
-  avatar?: string;
-}
-
 export interface Project {
   id: string;
   title: string;
@@ -26,8 +18,5 @@ export interface Project {
     endpoints?: string;
     components?: string;
   };
-  likes: number;
-  comments: Comment[];
-  isLiked?: boolean;
 }
 

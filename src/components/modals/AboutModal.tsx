@@ -57,7 +57,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
             <div className="relative inline-block">
               <img 
                 src="/avatar.svg" 
-                alt="Kishan" 
+                alt="Photo de profil de Kishan, développeur full-stack" 
                 className="w-32 h-32 rounded-full border-4 border-green-400 mx-auto mb-4 shadow-lg"
               />
               <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center ${darkMode ? 'bg-green-600' : 'bg-green-500'}`}>
@@ -88,9 +88,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                   De l'aviation au code : une reconversion réussie
                 </h4>
                 <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Ancien agent de trafic aérien, j'ai choisi de me reconvertir dans le développement web 
-                  pour allier logique, créativité et impact concret. Près d'un an d'expérience cumulée avec 
-                  une formation intensive full-stack et des projets concrets en freelance.
+                  Ancien agent de trafic aérien, j'ai choisi de me reconvertir dans le développement web pour allier logique, créativité et impact concret. Près d'un an d'expérience cumulée avec une formation intensive full-stack et des projets concrets en freelance.
                 </p>
               </div>
             </div>
@@ -162,9 +160,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                     Refonte front/back d'un dashboard SaaS
                   </p>
                   <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                    Développement d'un dashboard moderne en React/TypeScript connecté à un back-end Fastify. 
-                    Intégration Prisma pour la gestion de base de données et implémentation de fonctionnalités 
-                    de sécurité avancées.
+                    Développement d'un dashboard moderne en React/TypeScript connecté à un back-end Fastify. Intégration Prisma pour la gestion de base de données et implémentation de fonctionnalités de sécurité avancées.
                   </p>
                   <div className="mt-3">
                     <span className={`px-3 py-1 text-xs rounded-full ${darkMode ? 'bg-green-800/30 text-green-400' : 'bg-green-100 text-green-700'}`}>
@@ -221,9 +217,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                   Ce qui me rend unique
                 </h4>
                 <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Ma capacité à comprendre à la fois la logique technique et la vision produit, 
-                  pour transformer une idée en solution concrète. Créer des applications fiables, 
-                  esthétiques et bien structurées avec des valeurs d'autonomie, rigueur et innovation.
+                  Ma capacité à comprendre à la fois la logique technique et la vision produit, pour transformer une idée en solution concrète. Créer des applications fiables, esthétiques et bien structurées avec des valeurs d'autonomie, rigueur et innovation.
                 </p>
               </div>
             </div>
@@ -241,8 +235,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                   Entreprise (CDI/CDD)
                 </h5>
                 <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Mettre mes compétences au service de projets ambitieux, progresser au contact 
-                  d'équipes expérimentées et contribuer à des solutions durables.
+                  Mettre mes compétences au service de projets ambitieux, progresser au contact d'équipes expérimentées et contribuer à des solutions durables.
                 </p>
               </div>
               <div className={`p-4 rounded-lg ${darkMode ? 'bg-green-900/20 border border-green-700/30' : 'bg-green-50 border border-green-200'} shadow-md`}>
@@ -251,8 +244,7 @@ export default function AboutModal({ showAboutModal, setShowAboutModal, darkMode
                   Freelance/Entrepreneuriat
                 </h5>
                 <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Accompagner mes clients dans la réalisation de sites et d'applications modernes, 
-                  tout en développant mes propres projets digitaux autour de la tech et l'automatisation.
+                  Accompagner mes clients dans la réalisation de sites et d'applications modernes, tout en développant mes propres projets digitaux autour de la tech et l'automatisation.
                 </p>
               </div>
             </div>

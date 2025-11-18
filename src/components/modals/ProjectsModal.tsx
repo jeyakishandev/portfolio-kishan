@@ -45,8 +45,7 @@ export default function ProjectsModal({
       <div className="mb-8">
         <div className={`p-6 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-green-500' : 'bg-gray-50 border-green-400'}`}>
           <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
-            Voici une sélection de projets que j'ai réalisés ou imaginés. Les projets concrets sont 
-            déjà développés, tandis que les projets exploratoires représentent ma volonté d'innover.
+            Voici une sélection de projets que j'ai réalisés ou imaginés. Les projets concrets sont déjà développés, tandis que les projets exploratoires représentent ma volonté d'innover.
           </p>
         </div>
       </div>

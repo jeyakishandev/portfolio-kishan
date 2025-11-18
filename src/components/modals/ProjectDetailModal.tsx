@@ -1,27 +1,20 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import LikeButton from "../LikeButton";
-import CommentsSection from "../CommentsSection";
-
-import { Project, Comment } from '@/types/Project';
+import { Project } from '@/types/Project';
 
 interface ProjectDetailModalProps {
   showProjectDetailModal: boolean;
   setShowProjectDetailModal: (show: boolean) => void;
   darkMode: boolean;
   selectedProject: Project | null;
-  onLikeProject?: (projectId: string) => void;
-  onAddComment?: (projectId: string, author: string, content: string) => void;
 }
 
 export default function ProjectDetailModal({ 
   showProjectDetailModal, 
   setShowProjectDetailModal, 
   darkMode, 
-  selectedProject,
-  onLikeProject,
-  onAddComment
+  selectedProject
 }: ProjectDetailModalProps) {
   const [showImageModal, setShowImageModal] = useState(false);
   
@@ -74,7 +67,7 @@ export default function ProjectDetailModal({
             >
               <img 
                 src={selectedProject.image} 
-                alt={`Screenshot de ${selectedProject.title}`}
+                alt={`Capture d'écran du projet ${selectedProject.title} montrant l'interface utilisateur`}
                 className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
               />
               {/* Overlay avec informations au survol */}
@@ -395,28 +388,6 @@ export default function ProjectDetailModal({
         </div>
       </div>
 
-      {/* Section Likes et Commentaires */}
-      <div className="mt-8 space-y-6">
-        {/* Bouton Like */}
-        <div className="flex justify-center">
-          <LikeButton
-            likes={selectedProject.likes}
-            isLiked={selectedProject.isLiked || false}
-            onLike={() => onLikeProject?.(selectedProject.id)}
-            darkMode={darkMode}
-            projectId={selectedProject.id}
-          />
-        </div>
-
-        {/* Section Commentaires */}
-        <CommentsSection
-          comments={selectedProject.comments}
-          onAddComment={(author, content) => onAddComment?.(selectedProject.id, author, content)}
-          darkMode={darkMode}
-          projectId={selectedProject.id}
-        />
-      </div>
-
       {/* Liens et actions */}
       <div className="flex flex-wrap gap-4">
         {selectedProject.github && (
@@ -484,7 +455,7 @@ export default function ProjectDetailModal({
           <div className="relative max-w-7xl max-h-[90vh] z-10">
             <img 
               src={selectedProject.image} 
-              alt={`Screenshot agrandi de ${selectedProject.title}`}
+              alt={`Vue agrandie de la capture d'écran du projet ${selectedProject.title}`}
               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
             />
             

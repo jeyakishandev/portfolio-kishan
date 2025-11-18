@@ -2,6 +2,7 @@
 import { AnimatePresence } from "framer-motion";
 import { Github, Mail, Sun, Moon, HelpCircle, MousePointer, Zap, BookOpen, Image, Play, Briefcase, FileText } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useTerminal } from "@/hooks/useTerminal";
 import AboutModal from "@/components/modals/AboutModal";
 import SkillsModal from "@/components/modals/SkillsModal";
@@ -70,8 +71,6 @@ export default function ImprovedTerminal() {
     closeAllModals,
     executeCommand,
     handleKeyPress,
-    handleLikeProject,
-    handleAddComment,
   } = useTerminal();
 
   const handleCommandClick = async (cmd: string) => {
@@ -90,10 +89,49 @@ export default function ImprovedTerminal() {
     setShowWelcomeGuide(true);
   };
 
+  // Gestion globale de Escape pour fermer les modales
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeAllModals();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [closeAllModals]);
+
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-black text-green-400' : 'bg-gray-100 text-gray-800'} font-mono`}>
+      {/* Skip Links pour la navigation au clavier */}
+      <div className="sr-only focus-within:not-sr-only focus-within:absolute focus-within:top-4 focus-within:left-4 focus-within:z-50">
+        <a 
+          href="#main-content" 
+          className="px-4 py-2 bg-blue-600 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('main-content')?.focus();
+          }}
+        >
+          Aller au contenu principal
+        </a>
+        <a 
+          href="#terminal-input" 
+          className="ml-2 px-4 py-2 bg-blue-600 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          onClick={(e) => {
+            e.preventDefault();
+            inputRef.current?.focus();
+          }}
+        >
+          Aller à la ligne de commande
+        </a>
+      </div>
+
       {/* Header Terminal */}
-      <div className={`${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-300'} border-b px-4 py-3 flex items-center justify-between`}>
+      <header 
+        role="banner"
+        className={`${darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-300'} border-b px-4 py-3 flex items-center justify-between`}
+      >
         <div className="flex items-center gap-2">
           <div className="flex gap-1">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -107,7 +145,7 @@ export default function ImprovedTerminal() {
               animate={{ opacity: 1, scale: 1 }}
               className="ml-2 text-xs bg-blue-500 text-white px-2 py-1 rounded"
             >
-              VISUAL MODE
+              MODE VISUEL
             </motion.span>
           )}
         </div>
@@ -117,27 +155,29 @@ export default function ImprovedTerminal() {
             onClick={handleToggleTheme}
             whileHover={{ scale: 1.1, rotate: 15 }}
             whileTap={{ scale: 0.9 }}
-            className={`p-2 rounded transition-all duration-200 ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
-            title="Changer le thème"
+            className={`p-2 rounded transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${darkMode ? 'hover:bg-gray-800 focus:ring-green-500 focus:ring-offset-gray-900' : 'hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-white'}`}
+            aria-label={darkMode ? "Passer en mode clair" : "Passer en mode sombre"}
+            title={darkMode ? "Passer en mode clair" : "Passer en mode sombre"}
           >
-            {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+            {darkMode ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
           </motion.button>
 
           <motion.button
             onClick={handleShowTutorial}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`p-2 rounded transition-all duration-200 ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
-            title="Guide d'utilisation"
+            className={`p-2 rounded transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${darkMode ? 'hover:bg-gray-800 focus:ring-green-500 focus:ring-offset-gray-900' : 'hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-white'}`}
+            aria-label="Afficher le guide d'utilisation"
+            title="Afficher le guide d'utilisation"
           >
-            <HelpCircle size={16} />
+            <HelpCircle size={16} aria-hidden="true" />
           </motion.button>
-
 
           <motion.a
             href="https://www.linkedin.com/in/jeya-kishan-karunanithy"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Profil LinkedIn de Kishan (ouvre dans un nouvel onglet)"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className={`p-2 rounded transition-all duration-200 ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
@@ -148,20 +188,37 @@ export default function ImprovedTerminal() {
             </svg>
           </motion.a>
 
-          <a
+          <motion.a
             href="https://github.com/jeyakishandev"
             target="_blank"
             rel="noopener noreferrer"
-            className={`p-2 rounded transition-all duration-200 ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'}`}
+            aria-label="Profil GitHub de Kishan (ouvre dans un nouvel onglet)"
+            className={`p-2 rounded transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 ${darkMode ? 'hover:bg-gray-800 focus:ring-green-500 focus:ring-offset-gray-900' : 'hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-white'}`}
             title="GitHub"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <Github size={16} />
-          </a>
+            <Github size={16} aria-hidden="true" />
+          </motion.a>
         </div>
-      </div>
+      </header>
 
       {/* Terminal Content */}
-      <div className="p-4 max-w-6xl mx-auto pb-24">
+      <main 
+        id="main-content"
+        role="main"
+        className="p-4 max-w-6xl mx-auto pb-24"
+        tabIndex={-1}
+      >
+        {/* Région live pour les annonces */}
+        <div 
+          id="announcements"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="sr-only"
+        />
+
         <div className="space-y-2">
           <AnimatePresence>
             {outputHistory.map((item, index) => (
@@ -181,6 +238,8 @@ export default function ImprovedTerminal() {
                     ? darkMode ? 'text-purple-400' : 'text-purple-600'
                     : darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}
+                role={item.type === 'error' ? 'alert' : 'log'}
+                aria-label={item.type === 'command' ? 'Commande exécutée' : item.type === 'error' ? 'Erreur' : 'Sortie'}
               >
                 {item.content}
               </motion.div>
@@ -188,42 +247,56 @@ export default function ImprovedTerminal() {
           </AnimatePresence>
 
           {/* Input Line */}
-          <div className="flex items-center gap-2">
-            <span className={darkMode ? 'text-green-300' : 'text-green-600'}>kishan@portfolio:~$</span>
+          <div className="flex items-center gap-2" role="group" aria-label="Ligne de commande">
+            <span 
+              className={darkMode ? 'text-green-300' : 'text-green-600'}
+              aria-hidden="true"
+            >
+              kishan@portfolio:~$
+            </span>
             <div className="flex-1 flex items-center">
               <input
                 ref={inputRef}
+                id="terminal-input"
                 type="text"
                 value={currentCommand}
                 onChange={(e) => setCurrentCommand(e.target.value)}
                 onKeyDown={handleKeyPress}
-                className={`flex-1 bg-transparent outline-none ${darkMode ? 'text-green-400' : 'text-gray-800'}`}
+                className={`flex-1 bg-transparent outline-none focus:ring-2 focus:ring-offset-2 ${darkMode ? 'text-green-400 focus:ring-green-500 focus:ring-offset-black' : 'text-gray-800 focus:ring-blue-500 focus:ring-offset-white'} ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 placeholder="Tapez une commande ou utilisez les boutons..."
                 autoComplete="off"
                 disabled={isLoading}
                 aria-label="Commande terminal"
                 aria-describedby="terminal-help"
-                role="textbox"
+                aria-invalid={false}
+                aria-required="false"
               />
               {isLoading ? (
                 <motion.div
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
                   className="text-yellow-400"
+                  aria-label="Chargement en cours"
+                  role="status"
                 >
-                  ⏳
+                  <span aria-hidden="true">⏳</span>
                 </motion.div>
               ) : (
                 <motion.div
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                   className="w-2 h-5 bg-green-400"
+                  aria-label="Prêt à recevoir une commande"
+                  role="status"
                 />
               )}
             </div>
           </div>
+          <div id="terminal-help" className="sr-only">
+            Tapez une commande et appuyez sur Entrée pour l'exécuter. Utilisez Tab pour naviguer, Escape pour fermer les modales.
+          </div>
         </div>
-      </div>
+      </main>
 
       {/* Modales */}
       <AnimatePresence>
@@ -303,8 +376,6 @@ export default function ImprovedTerminal() {
           setShowProjectDetailModal={setShowProjectDetailModal}
           darkMode={darkMode}
           selectedProject={selectedProject}
-          onLikeProject={handleLikeProject}
-          onAddComment={handleAddComment}
         />
       </AnimatePresence>
 
@@ -341,7 +412,7 @@ export default function ImprovedTerminal() {
                     : 'bg-gray-200 hover:bg-gray-300 hover:shadow-md'
                 } ${command?.hasVisualContent ? 'border border-blue-500 hover:border-blue-400' : ''}`}
                 title={command?.description}
-                aria-label={`Exécuter la commande ${cmd}: ${command?.description}`}
+                aria-label={command?.description || cmd}
                 aria-pressed={loadingButton === cmd}
                 role="button"
               >

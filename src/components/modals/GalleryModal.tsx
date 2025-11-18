@@ -63,7 +63,7 @@ export default function GalleryModal({
                 <div className="relative h-full">
                   <img 
                     src={project.image} 
-                    alt={`Screenshot de ${project.title}`}
+                    alt={`Capture d'écran du projet ${project.title}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
