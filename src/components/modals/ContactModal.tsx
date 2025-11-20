@@ -24,29 +24,34 @@ export default function ContactModal({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+      className={`fixed top-2 sm:top-4 md:top-8 lg:top-20 bottom-16 sm:bottom-20 md:bottom-24 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 max-w-4xl mx-auto ${darkMode ? 'bg-[#1e293b]' : 'bg-white'} border ${darkMode ? 'border-[#334155]' : 'border-[#e2e8f0]'} rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 overflow-y-auto z-30 shadow-2xl`}
     >
-      <div className="flex justify-between items-center mb-6">
-        <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+      <div className="flex justify-between items-start sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6 sticky top-0 bg-inherit pb-2 sm:pb-0 z-10">
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-[#10b981]' : 'text-[#1e293b]'}`}>
           Contact
         </h2>
         <button
           onClick={() => setShowContactModal(false)}
-          className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+          className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base flex-shrink-0 transition-colors ${
+            darkMode 
+              ? 'bg-[#334155] hover:bg-[#475569] text-[#e2e8f0]' 
+              : 'bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#1e293b]'
+          }`}
         >
-          Fermer
+          <span className="hidden sm:inline">Fermer</span>
+          <span className="sm:hidden">✕</span>
         </button>
       </div>
 
-      <div className="mb-6">
-        <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-          Vous souhaitez collaborer avec moi ou en savoir plus sur mon profil ?<br/>
+      <div className="mb-4 sm:mb-6">
+        <p className={`text-sm sm:text-base ${darkMode ? 'text-[#e2e8f0]' : 'text-[#1e293b]'}`}>
+          Vous souhaitez collaborer avec moi ou en savoir plus sur mon profil ?<br className="hidden sm:block"/>
           Je suis disponible pour un CDI/CDD, des missions freelance, ou simplement pour échanger autour de nouvelles idées.
         </p>
       </div>
 
       {/* Informations de contact */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6">
         <div className={`p-3 rounded-lg text-center ${darkMode ? 'bg-blue-900/20' : 'bg-blue-50'}`}>
           <div className="mb-2 flex justify-center">
             <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">

@@ -35,27 +35,32 @@ export default function WelcomeGuideModal({
       aria-modal="true"
       aria-labelledby="guide-modal-title"
       aria-describedby="guide-modal-description"
-      className={`fixed top-20 bottom-24 left-4 right-4 max-w-4xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+      className={`fixed top-2 sm:top-4 md:top-8 lg:top-20 bottom-16 sm:bottom-20 md:bottom-24 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 max-w-4xl mx-auto ${darkMode ? 'bg-[#1e293b]' : 'bg-white'} border ${darkMode ? 'border-[#334155]' : 'border-[#e2e8f0]'} rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 overflow-y-auto z-30 shadow-2xl`}
     >
-      <div className="flex justify-between items-center mb-4">
-        <h2 id="guide-modal-title" className={`text-lg font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+      <div className="flex justify-between items-start sm:items-center gap-2 sm:gap-4 mb-3 sm:mb-4 sticky top-0 bg-inherit pb-2 sm:pb-0 z-10">
+        <h2 id="guide-modal-title" className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-[#10b981]' : 'text-[#1e293b]'}`}>
           Bienvenue sur mon Portfolio Terminal !
         </h2>
         <button
           onClick={() => setShowWelcomeGuide(false)}
           aria-label="Fermer le guide de bienvenue"
-          className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+          className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base flex-shrink-0 transition-colors ${
+            darkMode 
+              ? 'bg-[#334155] hover:bg-[#475569] text-[#e2e8f0]' 
+              : 'bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#1e293b]'
+          }`}
         >
-          Commencer
+          <span className="hidden sm:inline">Commencer</span>
+          <span className="sm:hidden">OK</span>
         </button>
       </div>
 
-      <div className="mb-6">
-        <div className={`p-4 rounded-lg ${darkMode ? 'bg-green-900/20' : 'bg-green-50'} mb-4`}>
-          <h3 className={`text-base font-semibold mb-2 ${darkMode ? 'text-green-300' : 'text-green-700'}`}>
+      <div className="mb-4 sm:mb-6">
+        <div className={`p-3 sm:p-4 rounded-lg ${darkMode ? 'bg-[#10b981]/10' : 'bg-[#10b981]/5'} mb-3 sm:mb-4`}>
+          <h3 className={`text-sm sm:text-base font-semibold mb-1.5 sm:mb-2 ${darkMode ? 'text-[#10b981]' : 'text-[#059669]'}`}>
             🚀 Comment utiliser ce portfolio ?
           </h3>
-          <p id="guide-modal-description" className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+          <p id="guide-modal-description" className={`text-xs sm:text-sm ${darkMode ? 'text-[#e2e8f0]' : 'text-[#1e293b]'} leading-relaxed`}>
             Ce portfolio utilise une interface terminal unique ! Tu peux naviguer en tapant des commandes
             ou en utilisant les boutons rapides en bas de l'écran.
           </p>

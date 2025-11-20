@@ -28,37 +28,42 @@ export default function ProjectsModal({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+      className={`fixed top-2 sm:top-4 md:top-8 lg:top-20 bottom-16 sm:bottom-20 md:bottom-24 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 max-w-6xl mx-auto ${darkMode ? 'bg-[#1e293b]' : 'bg-white'} border ${darkMode ? 'border-[#334155]' : 'border-[#e2e8f0]'} rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 overflow-y-auto z-30 shadow-2xl`}
     >
-      <div className="flex justify-between items-center mb-6">
-        <h2 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+      <div className="flex justify-between items-start sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6 sticky top-0 bg-inherit pb-2 sm:pb-0 z-10">
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-[#10b981]' : 'text-[#1e293b]'}`}>
           Mes Projets
         </h2>
         <button
           onClick={() => setShowProjectsModal(false)}
-          className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+          className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base flex-shrink-0 transition-colors ${
+            darkMode 
+              ? 'bg-[#334155] hover:bg-[#475569] text-[#e2e8f0]' 
+              : 'bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#1e293b]'
+          }`}
         >
-          Fermer
+          <span className="hidden sm:inline">Fermer</span>
+          <span className="sm:hidden">✕</span>
         </button>
       </div>
 
-      <div className="mb-8">
-        <div className={`p-6 rounded-lg border-l-4 ${darkMode ? 'bg-gray-800 border-green-500' : 'bg-gray-50 border-green-400'}`}>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
+      <div className="mb-4 sm:mb-6 md:mb-8">
+        <div className={`p-3 sm:p-4 md:p-6 rounded-lg border-l-2 sm:border-l-4 ${darkMode ? 'bg-[#0f172a] border-[#10b981]' : 'bg-[#f8fafc] border-[#10b981]'}`}>
+          <p className={`text-xs sm:text-sm ${darkMode ? 'text-[#e2e8f0]' : 'text-[#1e293b]'} leading-relaxed`}>
             Voici une sélection de projets que j'ai réalisés ou imaginés. Les projets concrets sont déjà développés, tandis que les projets exploratoires représentent ma volonté d'innover.
           </p>
         </div>
       </div>
 
-      {/* Projets Concrets */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className={`w-1 h-8 rounded-full ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></div>
-          <h3 className={`text-xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+      {/* Projets Concrets - Mobile First */}
+      <div className="mb-4 sm:mb-6 md:mb-8">
+        <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 md:mb-6">
+          <div className={`w-0.5 sm:w-1 h-6 sm:h-8 rounded-full ${darkMode ? 'bg-[#10b981]' : 'bg-[#10b981]'}`}></div>
+          <h3 className={`text-base sm:text-lg md:text-xl font-bold ${darkMode ? 'text-[#10b981]' : 'text-[#059669]'}`}>
             Projets Concrets
           </h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
           {projects.map((project) => (
             <motion.div 
               key={project.id} 

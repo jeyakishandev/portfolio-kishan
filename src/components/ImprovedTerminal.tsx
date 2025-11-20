@@ -154,20 +154,20 @@ export default function ImprovedTerminal() {
         </a>
       </div>
 
-      {/* Header Professionnel avec Palette Cohérente */}
+      {/* Header Professionnel avec Palette Cohérente - Mobile First */}
       <header 
         role="banner"
         className={`${darkMode ? 'bg-[#1e293b] border-[#334155]' : 'bg-white border-[#e2e8f0]'} border-b backdrop-blur-sm sticky top-0 z-30 shadow-sm`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {/* Logo/Initiale avec effet atypique et palette cohérente */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0 flex-1">
+            {/* Logo/Initiale avec effet atypique et palette cohérente - Responsive */}
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
               whileHover={{ scale: 1.05, rotate: 5 }}
-              className={`w-11 h-11 rounded-xl flex items-center justify-center font-bold text-lg glow-effect ${
+              className={`w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0 glow-effect ${
                 darkMode 
                   ? 'bg-gradient-to-br from-[#3b82f6] to-[#10b981] text-white shadow-lg shadow-[#3b82f6]/20' 
                   : 'bg-gradient-to-br from-[#3b82f6] to-[#10b981] text-white shadow-lg shadow-[#3b82f6]/10'
@@ -178,31 +178,31 @@ export default function ImprovedTerminal() {
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 ${
+                  className={`absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full border-2 ${
                     darkMode ? 'bg-[#10b981] border-[#1e293b]' : 'bg-[#10b981] border-white'
                   }`}
                 />
               )}
             </motion.div>
             
-            {/* Nom et titre avec gradient text atypique */}
-            <div className="flex flex-col">
-              <h1 className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-[#1e293b]'}`}>
+            {/* Nom et titre avec gradient text atypique - Responsive */}
+            <div className="flex flex-col min-w-0">
+              <h1 className={`text-sm sm:text-base md:text-lg font-semibold truncate ${darkMode ? 'text-white' : 'text-[#1e293b]'}`}>
                 Jeya Kishan Karunanithy
               </h1>
-              <p className={`text-xs ${darkMode ? 'text-[#94a3b8]' : 'text-[#64748b]'}`}>
+              <p className={`text-[10px] sm:text-xs hidden sm:block ${darkMode ? 'text-[#94a3b8]' : 'text-[#64748b]'}`}>
                 Développeur Full-Stack
               </p>
             </div>
           </div>
 
-          {/* Actions Header avec palette cohérente */}
-          <div className="flex items-center gap-3">
+          {/* Actions Header avec palette cohérente - Mobile First */}
+          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-shrink-0">
             <motion.button
               onClick={handleToggleTheme}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 ${
+              className={`p-2 sm:p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 ${
                 darkMode 
                   ? 'hover:bg-[#334155] text-[#e2e8f0]' 
                   : 'hover:bg-[#f1f5f9] text-[#1e293b]'
@@ -210,14 +210,14 @@ export default function ImprovedTerminal() {
               aria-label={darkMode ? "Passer en mode clair" : "Passer en mode sombre"}
               title={darkMode ? "Passer en mode clair" : "Passer en mode sombre"}
             >
-              {darkMode ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
+              {darkMode ? <Sun className="w-4 h-4 sm:w-[18px] sm:h-[18px]" aria-hidden="true" /> : <Moon className="w-4 h-4 sm:w-[18px] sm:h-[18px]" aria-hidden="true" />}
             </motion.button>
 
             <motion.button
               onClick={handleShowTutorial}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 ${
+              className={`p-2 sm:p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 ${
                 darkMode 
                   ? 'hover:bg-[#334155] text-[#e2e8f0]' 
                   : 'hover:bg-[#f1f5f9] text-[#1e293b]'
@@ -225,10 +225,10 @@ export default function ImprovedTerminal() {
               aria-label="Aide et guide d'utilisation"
               title="Aide"
             >
-              <HelpCircle size={18} aria-hidden="true" />
+              <HelpCircle className="w-4 h-4 sm:w-[18px] sm:h-[18px]" aria-hidden="true" />
             </motion.button>
 
-            <div className={`h-6 w-px ${darkMode ? 'bg-[#334155]' : 'bg-[#e2e8f0]'}`} />
+            <div className={`h-5 sm:h-6 w-px hidden sm:block ${darkMode ? 'bg-[#334155]' : 'bg-[#e2e8f0]'}`} />
 
             <motion.a
               href="https://www.linkedin.com/in/jeya-kishan-karunanithy"
@@ -237,14 +237,14 @@ export default function ImprovedTerminal() {
               aria-label="Profil LinkedIn (ouvre dans un nouvel onglet)"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`p-2.5 rounded-lg transition-all duration-200 ${
+              className={`p-2 sm:p-2.5 rounded-lg transition-all duration-200 ${
                 darkMode 
                   ? 'hover:bg-[#334155] text-[#e2e8f0]' 
                   : 'hover:bg-[#f1f5f9] text-[#1e293b]'
               }`}
               title="LinkedIn"
             >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="currentColor">
                 <path fill="#0077B5" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </motion.a>
@@ -254,7 +254,7 @@ export default function ImprovedTerminal() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Profil GitHub (ouvre dans un nouvel onglet)"
-              className={`p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 ${
+              className={`p-2 sm:p-2.5 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:ring-offset-2 ${
                 darkMode 
                   ? 'hover:bg-[#334155] text-[#e2e8f0]' 
                   : 'hover:bg-[#f1f5f9] text-[#1e293b]'
@@ -263,17 +263,17 @@ export default function ImprovedTerminal() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Github size={18} aria-hidden="true" />
+              <Github className="w-4 h-4 sm:w-[18px] sm:h-[18px]" aria-hidden="true" />
             </motion.a>
           </div>
         </div>
       </header>
 
-      {/* Terminal Content - Layout Asymétrique Unique */}
+      {/* Terminal Content - Layout Asymétrique Unique - Mobile First */}
       <main 
         id="main-content"
         role="main"
-        className="px-4 sm:px-6 lg:px-8 py-8 max-w-7xl mx-auto pb-40 sm:pb-36"
+        className="px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 max-w-7xl mx-auto pb-32 sm:pb-36 md:pb-40"
         tabIndex={-1}
       >
         {/* Région live pour les annonces */}
@@ -285,25 +285,25 @@ export default function ImprovedTerminal() {
           className="sr-only"
         />
 
-        {/* Terminal Container avec palette cohérente et design atypique */}
-        <div className={`rounded-2xl border shadow-2xl overflow-hidden glow-effect ${
+        {/* Terminal Container avec palette cohérente et design atypique - Mobile First */}
+        <div className={`rounded-xl sm:rounded-2xl border shadow-lg sm:shadow-2xl overflow-hidden glow-effect ${
           darkMode 
             ? 'bg-[#1e293b] border-[#334155]' 
             : 'bg-white border-[#e2e8f0]'
         }`}>
-          {/* Terminal Header Bar - Sans cercles colorés, design épuré */}
-          <div className={`px-6 py-3.5 border-b flex items-center justify-between ${
+          {/* Terminal Header Bar - Sans cercles colorés, design épuré - Mobile First */}
+          <div className={`px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-3.5 border-b flex items-center justify-between gap-2 ${
             darkMode ? 'bg-[#0f172a]/50 border-[#334155]' : 'bg-[#f8fafc] border-[#e2e8f0]'
           }`}>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
               {/* Indicateur de statut atypique au lieu de cercles */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
                 <motion.div
                   animate={{ opacity: [1, 0.5, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className={`w-2 h-2 rounded-full ${darkMode ? 'bg-[#10b981]' : 'bg-[#10b981]'}`}
+                  className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0 ${darkMode ? 'bg-[#10b981]' : 'bg-[#10b981]'}`}
                 />
-                <span className={`text-xs font-mono font-medium ${
+                <span className={`text-[10px] sm:text-xs font-mono font-medium truncate ${
                   darkMode ? 'text-[#94a3b8]' : 'text-[#64748b]'
                 }`}>
                   terminal@portfolio
@@ -314,19 +314,20 @@ export default function ImprovedTerminal() {
               <motion.span
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                className={`text-xs px-2.5 py-1 rounded-full font-medium ${
+                className={`text-[10px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full font-medium flex-shrink-0 ${
                   darkMode 
                     ? 'bg-[#3b82f6]/20 text-[#60a5fa] border border-[#3b82f6]/30' 
                     : 'bg-[#3b82f6]/10 text-[#2563eb] border border-[#3b82f6]/20'
                 }`}
               >
-                Mode Visuel
+                <span className="hidden sm:inline">Mode Visuel</span>
+                <span className="sm:hidden">Visuel</span>
               </motion.span>
             )}
           </div>
 
-          {/* Terminal Content avec palette cohérente */}
-          <div className="p-6 space-y-4 min-h-[400px] timeline-line">
+          {/* Terminal Content avec palette cohérente - Mobile First */}
+          <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 min-h-[300px] sm:min-h-[350px] md:min-h-[400px] timeline-line">
             <AnimatePresence>
               {outputHistory.map((item, index) => (
                 <motion.div
@@ -353,19 +354,19 @@ export default function ImprovedTerminal() {
               ))}
             </AnimatePresence>
 
-            {/* Input Line - Design Moderne avec palette cohérente */}
-            <div className={`flex items-center gap-3 p-4 rounded-xl border transition-all duration-200 ${
+            {/* Input Line - Design Moderne avec palette cohérente - Mobile First */}
+            <div className={`flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg sm:rounded-xl border transition-all duration-200 ${
               darkMode 
                 ? 'bg-[#0f172a]/50 border-[#334155] focus-within:border-[#3b82f6] focus-within:shadow-lg focus-within:shadow-[#3b82f6]/10' 
                 : 'bg-[#f8fafc] border-[#e2e8f0] focus-within:border-[#3b82f6] focus-within:shadow-lg focus-within:shadow-[#3b82f6]/5'
             }`} role="group" aria-label="Ligne de commande">
               <span 
-                className={`font-mono text-sm font-semibold ${darkMode ? 'text-[#10b981]' : 'text-[#059669]'}`}
+                className={`font-mono text-xs sm:text-sm font-semibold flex-shrink-0 ${darkMode ? 'text-[#10b981]' : 'text-[#059669]'}`}
                 aria-hidden="true"
               >
                 &gt;
               </span>
-              <div className="flex-1 flex items-center gap-2">
+              <div className="flex-1 flex items-center gap-1.5 sm:gap-2 min-w-0">
                 <input
                   ref={inputRef}
                   id="terminal-input"
@@ -373,12 +374,12 @@ export default function ImprovedTerminal() {
                   value={currentCommand}
                   onChange={(e) => setCurrentCommand(e.target.value)}
                   onKeyDown={handleKeyPress}
-                  className={`flex-1 bg-transparent outline-none font-mono text-sm ${
+                  className={`flex-1 bg-transparent outline-none font-mono text-xs sm:text-sm min-w-0 ${
                     darkMode 
                       ? 'text-[#e2e8f0] placeholder:text-[#64748b] focus:text-[#10b981]' 
                       : 'text-[#1e293b] placeholder:text-[#94a3b8] focus:text-[#059669]'
                   } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  placeholder="Tapez une commande ou utilisez les boutons de navigation..."
+                  placeholder="Tapez une commande..."
                   autoComplete="off"
                   disabled={isLoading}
                   aria-label="Commande terminal"
@@ -504,34 +505,34 @@ export default function ImprovedTerminal() {
         />
       </AnimatePresence>
 
-      {/* Quick Commands - Design Professionnel avec Labels Clairs et Palette Cohérente */}
+      {/* Quick Commands - Design Professionnel avec Labels Clairs et Palette Cohérente - Mobile First */}
       <div className={`fixed bottom-0 left-0 right-0 z-40 ${
         darkMode 
           ? 'bg-[#1e293b] border-t border-[#334155]' 
           : 'bg-white border-t border-[#e2e8f0]'
       } backdrop-blur-lg shadow-2xl`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
-          {/* Labels clairs pour non-tech avec design atypique */}
-          <div className="mb-4 px-1">
-            <div className="flex items-center gap-2 mb-1">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5">
+          {/* Labels clairs pour non-tech avec design atypique - Mobile First */}
+          <div className="mb-2 sm:mb-3 md:mb-4 px-1">
+            <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                className="text-lg"
+                className="text-base sm:text-lg"
               >
                 🚀
               </motion.div>
-              <p className={`text-sm font-semibold ${darkMode ? 'text-[#e2e8f0]' : 'text-[#1e293b]'}`}>
+              <p className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-[#e2e8f0]' : 'text-[#1e293b]'}`}>
                 Navigation rapide
               </p>
             </div>
-            <p className={`text-xs ${darkMode ? 'text-[#94a3b8]' : 'text-[#64748b]'}`}>
+            <p className={`text-[10px] sm:text-xs hidden sm:block ${darkMode ? 'text-[#94a3b8]' : 'text-[#64748b]'}`}>
               Explorez mon portfolio en un clic - Conçu pour être intuitif même sans connaissances techniques
             </p>
           </div>
           
-          {/* Boutons organisés par catégorie avec palette cohérente */}
-          <div className="flex flex-wrap gap-3">
+          {/* Boutons organisés par catégorie avec palette cohérente - Mobile First */}
+          <div className="flex flex-wrap gap-2 sm:gap-2.5 md:gap-3">
             {quickCommands.map(cmd => {
               const command = commands.find(c => c.command === cmd);
               const labelInfo = commandLabels[cmd] || { label: cmd, emoji: '•', category: 'Autre' };
@@ -543,7 +544,7 @@ export default function ImprovedTerminal() {
                   whileHover={{ scale: loadingButton === cmd ? 1 : 1.03, y: loadingButton === cmd ? 0 : -3 }}
                   whileTap={{ scale: 0.97 }}
                   disabled={loadingButton === cmd}
-                  className={`group px-5 py-3 rounded-xl flex items-center gap-2.5 transition-all duration-200 font-medium text-sm ${
+                  className={`group px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl flex items-center gap-1.5 sm:gap-2 md:gap-2.5 transition-all duration-200 font-medium text-xs sm:text-sm ${
                     loadingButton === cmd 
                       ? `${darkMode ? 'bg-[#334155]/50' : 'bg-[#e2e8f0]/50'} cursor-not-allowed opacity-60`
                       : darkMode
@@ -559,19 +560,20 @@ export default function ImprovedTerminal() {
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className={`w-4 h-4 border-2 rounded-full border-t-transparent ${
+                      className={`w-3 h-3 sm:w-4 sm:h-4 border-2 rounded-full border-t-transparent ${
                         darkMode ? 'border-[#3b82f6]' : 'border-[#2563eb]'
                       }`}
                     />
                   ) : (
                     <>
-                      <span className="text-base">{labelInfo.emoji}</span>
-                      <span>{labelInfo.label}</span>
+                      <span className="text-sm sm:text-base flex-shrink-0">{labelInfo.emoji}</span>
+                      <span className="hidden sm:inline whitespace-nowrap">{labelInfo.label}</span>
+                      <span className="sm:hidden text-[10px]">{labelInfo.label.split(' ')[0]}</span>
                       {command?.hasVisualContent && (
                         <motion.span
                           initial={{ opacity: 0, scale: 0.8 }}
                           animate={{ opacity: 1, scale: 1 }}
-                          className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                          className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded-full font-medium hidden sm:inline-flex ${
                             darkMode 
                               ? 'bg-[#10b981]/20 text-[#10b981]' 
                               : 'bg-[#10b981]/10 text-[#059669]'

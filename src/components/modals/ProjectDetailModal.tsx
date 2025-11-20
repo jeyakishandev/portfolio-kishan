@@ -26,32 +26,39 @@ export default function ProjectDetailModal({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 20 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`fixed top-20 bottom-24 left-4 right-4 max-w-6xl mx-auto ${darkMode ? 'bg-gray-900' : 'bg-white'} border rounded-lg p-4 overflow-y-auto z-30`}
+      className={`fixed top-2 sm:top-4 md:top-8 lg:top-20 bottom-16 sm:bottom-20 md:bottom-24 left-2 sm:left-3 md:left-4 right-2 sm:right-3 md:right-4 max-w-6xl mx-auto ${darkMode ? 'bg-[#1e293b]' : 'bg-white'} border ${darkMode ? 'border-[#334155]' : 'border-[#e2e8f0]'} rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 overflow-y-auto z-30 shadow-2xl`}
     >
-      <div className="flex justify-between items-center mb-6">
-        <h2 className={`text-2xl font-bold ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+      <div className="flex justify-between items-start sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-6 sticky top-0 bg-inherit pb-2 sm:pb-0 z-10">
+        <h2 className={`text-lg sm:text-xl md:text-2xl font-bold ${darkMode ? 'text-[#10b981]' : 'text-[#1e293b]'} break-words`}>
           {selectedProject.title}
         </h2>
         <button
           onClick={() => setShowProjectDetailModal(false)}
-          className={`px-3 py-1 rounded ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+          className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base flex-shrink-0 transition-colors ${
+            darkMode 
+              ? 'bg-[#334155] hover:bg-[#475569] text-[#e2e8f0]' 
+              : 'bg-[#f1f5f9] hover:bg-[#e2e8f0] text-[#1e293b]'
+          }`}
         >
-          Fermer
+          <span className="hidden sm:inline">Fermer</span>
+          <span className="sm:hidden">✕</span>
         </button>
       </div>
 
-      {/* Image/Vidéo du projet */}
-      <div className="mb-8">
+      {/* Image/Vidéo du projet - Mobile First */}
+      <div className="mb-4 sm:mb-6 md:mb-8">
         <div className="relative group">
           {/* Container principal avec effet de profondeur */}
-          <div className={`relative rounded-2xl overflow-hidden shadow-2xl ${darkMode ? 'bg-gray-800' : 'bg-white'} border ${darkMode ? 'border-gray-700' : 'border-gray-200'}`}>
-            {/* Barre de titre du navigateur simulée */}
-            <div className={`px-4 py-3 border-b ${darkMode ? 'bg-gray-700 border-gray-600' : 'bg-gray-100 border-gray-300'}`}>
-              <div className="flex items-center gap-2">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          <div className={`relative rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl ${darkMode ? 'bg-[#0f172a]' : 'bg-white'} border ${darkMode ? 'border-[#334155]' : 'border-[#e2e8f0]'}`}>
+            {/* Barre de titre du navigateur simulée - Sans cercles colorés */}
+            <div className={`px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 border-b ${darkMode ? 'bg-[#1e293b] border-[#334155]' : 'bg-[#f8fafc] border-[#e2e8f0]'}`}>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <div className="flex items-center gap-1 sm:gap-2">
+                  <motion.div
+                    animate={{ opacity: [1, 0.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#10b981]"
+                  />
                 </div>
                 <div className={`flex-1 text-center text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   {selectedProject.live ? selectedProject.live : `${selectedProject.title}.com`}
@@ -84,20 +91,20 @@ export default function ProjectDetailModal({
         </div>
       </div>
 
-      {/* Description complète */}
-      <div className="mb-8">
-        <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
+      {/* Description complète - Mobile First */}
+      <div className="mb-4 sm:mb-6 md:mb-8">
+        <h3 className={`text-base sm:text-lg md:text-xl font-semibold mb-2 sm:mb-3 md:mb-4 ${darkMode ? 'text-[#10b981]' : 'text-[#1e293b]'}`}>
           Description du Projet
         </h3>
-        <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed whitespace-pre-line`}>
+        <div className={`p-3 sm:p-4 md:p-6 rounded-lg ${darkMode ? 'bg-[#0f172a]' : 'bg-[#f8fafc]'}`}>
+          <p className={`text-xs sm:text-sm ${darkMode ? 'text-[#e2e8f0]' : 'text-[#1e293b]'} leading-relaxed whitespace-pre-line`}>
             {selectedProject.fullDescription || selectedProject.description}
           </p>
         </div>
       </div>
 
-      {/* Technologies utilisées */}
-      <div className="mb-8">
+      {/* Technologies utilisées - Mobile First */}
+      <div className="mb-4 sm:mb-6 md:mb-8">
         <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-green-400' : 'text-gray-800'}`}>
           Technologies & Outils
         </h3>
