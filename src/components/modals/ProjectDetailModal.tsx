@@ -90,8 +90,8 @@ export default function ProjectDetailModal({
           Description du Projet
         </h3>
         <div className={`p-6 rounded-lg ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
-          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed`}>
-            {selectedProject.description}
+          <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed whitespace-pre-line`}>
+            {selectedProject.fullDescription || selectedProject.description}
           </p>
         </div>
       </div>
@@ -210,48 +210,33 @@ export default function ProjectDetailModal({
               </motion.div>
             </>
           )}
-          {selectedProject.id === 'luxtime' && (
+          {selectedProject.id === 'luxtime' && selectedProject.features && (
             <>
-              <motion.div 
-                whileHover={{ y: -2, scale: 1.02 }}
-                className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-green-500' : 'bg-white border-gray-200 hover:border-green-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></div>
-                  <h4 className={`text-lg font-bold ${darkMode ? 'text-green-300' : 'text-green-700'}`}>E-commerce Complet</h4>
-                </div>
-                <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Catalogue, panier et système de commande</p>
-              </motion.div>
-              <motion.div 
-                whileHover={{ y: -2, scale: 1.02 }}
-                className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-blue-500' : 'bg-white border-gray-200 hover:border-blue-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
-                  <h4 className={`text-lg font-bold ${darkMode ? 'text-blue-300' : 'text-blue-700'}`}>Paiement Stripe</h4>
-                </div>
-                <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Intégration sécurisée des paiements en ligne</p>
-              </motion.div>
-              <motion.div 
-                whileHover={{ y: -2, scale: 1.02 }}
-                className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-purple-500' : 'bg-white border-gray-200 hover:border-purple-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-purple-500' : 'bg-purple-600'}`}></div>
-                  <h4 className={`text-lg font-bold ${darkMode ? 'text-purple-300' : 'text-purple-700'}`}>Gestion Comptes</h4>
-                </div>
-                <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Inscription, connexion et historique des commandes</p>
-              </motion.div>
-              <motion.div 
-                whileHover={{ y: -2, scale: 1.02 }}
-                className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700 hover:border-orange-500' : 'bg-white border-gray-200 hover:border-orange-400'} transition-all duration-300 shadow-md hover:shadow-lg`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-3 h-3 rounded-full ${darkMode ? 'bg-orange-500' : 'bg-orange-600'}`}></div>
-                  <h4 className={`text-lg font-bold ${darkMode ? 'text-orange-300' : 'text-orange-700'}`}>Design Responsive</h4>
-                </div>
-                <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>Interface adaptée mobile et desktop</p>
-              </motion.div>
+              {selectedProject.features.map((feature, index) => {
+                const colors = [
+                  { bg: darkMode ? 'bg-green-500' : 'bg-green-600', text: darkMode ? 'text-green-300' : 'text-green-700', border: darkMode ? 'hover:border-green-500' : 'hover:border-green-400' },
+                  { bg: darkMode ? 'bg-blue-500' : 'bg-blue-600', text: darkMode ? 'text-blue-300' : 'text-blue-700', border: darkMode ? 'hover:border-blue-500' : 'hover:border-blue-400' },
+                  { bg: darkMode ? 'bg-purple-500' : 'bg-purple-600', text: darkMode ? 'text-purple-300' : 'text-purple-700', border: darkMode ? 'hover:border-purple-500' : 'hover:border-purple-400' },
+                  { bg: darkMode ? 'bg-orange-500' : 'bg-orange-600', text: darkMode ? 'text-orange-300' : 'text-orange-700', border: darkMode ? 'hover:border-orange-500' : 'hover:border-orange-400' },
+                  { bg: darkMode ? 'bg-pink-500' : 'bg-pink-600', text: darkMode ? 'text-pink-300' : 'text-pink-700', border: darkMode ? 'hover:border-pink-500' : 'hover:border-pink-400' },
+                  { bg: darkMode ? 'bg-cyan-500' : 'bg-cyan-600', text: darkMode ? 'text-cyan-300' : 'text-cyan-700', border: darkMode ? 'hover:border-cyan-500' : 'hover:border-cyan-400' },
+                  { bg: darkMode ? 'bg-indigo-500' : 'bg-indigo-600', text: darkMode ? 'text-indigo-300' : 'text-indigo-700', border: darkMode ? 'hover:border-indigo-500' : 'hover:border-indigo-400' },
+                  { bg: darkMode ? 'bg-teal-500' : 'bg-teal-600', text: darkMode ? 'text-teal-300' : 'text-teal-700', border: darkMode ? 'hover:border-teal-500' : 'hover:border-teal-400' },
+                ];
+                const color = colors[index % colors.length];
+                return (
+                  <motion.div 
+                    key={index}
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} ${color.border} transition-all duration-300 shadow-md hover:shadow-lg`}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`w-3 h-3 rounded-full ${color.bg}`}></div>
+                      <h4 className={`text-lg font-bold ${color.text}`}>{feature}</h4>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </>
           )}
           {selectedProject.id === 'conquete-monde' && (
@@ -301,12 +286,73 @@ export default function ProjectDetailModal({
         </div>
       </div>
 
+      {/* Statistiques du projet */}
+      {selectedProject.stats && (
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className={`w-1 h-8 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+            <h3 className={`text-xl font-bold ${darkMode ? 'text-blue-400' : 'text-gray-800'}`}>
+              Statistiques du Projet
+            </h3>
+          </div>
+          <div className={`p-6 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} shadow-lg`}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {selectedProject.stats.duration && (
+                <div className="flex items-center gap-3">
+                  <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div>
+                    <span className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Durée :</span>
+                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedProject.stats.duration}</span>
+                  </div>
+                </div>
+              )}
+              {selectedProject.stats.team && (
+                <div className="flex items-center gap-3">
+                  <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div>
+                    <span className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Équipe :</span>
+                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedProject.stats.team}</span>
+                  </div>
+                </div>
+              )}
+              {selectedProject.stats.linesOfCode && (
+                <div className="flex items-center gap-3">
+                  <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div>
+                    <span className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Lignes de code :</span>
+                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedProject.stats.linesOfCode}</span>
+                  </div>
+                </div>
+              )}
+              {selectedProject.stats.endpoints && (
+                <div className="flex items-center gap-3">
+                  <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div>
+                    <span className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Endpoints API :</span>
+                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedProject.stats.endpoints}</span>
+                  </div>
+                </div>
+              )}
+              {selectedProject.stats.components && (
+                <div className="flex items-center gap-3">
+                  <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div>
+                    <span className={`font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>Composants :</span>
+                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>{selectedProject.stats.components}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Défis techniques */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-6">
           <div className={`w-1 h-8 rounded-full ${darkMode ? 'bg-orange-500' : 'bg-orange-600'}`}></div>
           <h3 className={`text-xl font-bold ${darkMode ? 'text-orange-400' : 'text-gray-800'}`}>
-            Défis Techniques
+            Défis Techniques & Points Forts
           </h3>
         </div>
         <div className={`p-8 rounded-xl border ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} shadow-lg`}>
@@ -354,17 +400,47 @@ export default function ProjectDetailModal({
             )}
             {selectedProject.id === 'luxtime' && (
               <>
-                <li className="flex items-start gap-3">
-                  <span className={`w-2 h-2 rounded-full mt-2 ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></span>
-                  <span><strong>Intégration Stripe :</strong> Configuration sécurisée des paiements avec gestion des webhooks</span>
+                <li className="flex items-start gap-4">
+                  <div className={`w-3 h-3 rounded-full mt-1 ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                  <div>
+                    <span className={`font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Architecture fullstack complète :</span>
+                    <span className="ml-2">React + Express + PostgreSQL avec séparation frontend/backend</span>
+                  </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className={`w-2 h-2 rounded-full mt-2 ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></span>
-                  <span><strong>Gestion d'inventaire :</strong> Synchronisation en temps réel des stocks et disponibilités</span>
+                <li className="flex items-start gap-4">
+                  <div className={`w-3 h-3 rounded-full mt-1 ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                  <div>
+                    <span className={`font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Sécurité :</span>
+                    <span className="ml-2">JWT, bcrypt, validation, rate limiting et middlewares de protection (Helmet, CORS)</span>
+                  </div>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className={`w-2 h-2 rounded-full mt-2 ${darkMode ? 'bg-green-500' : 'bg-green-600'}`}></span>
-                  <span><strong>UX/UI :</strong> Design responsive optimisé pour la conversion e-commerce</span>
+                <li className="flex items-start gap-4">
+                  <div className={`w-3 h-3 rounded-full mt-1 ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                  <div>
+                    <span className={`font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Code testé :</span>
+                    <span className="ml-2">Tests unitaires backend (Jest) et frontend (Vitest) pour garantir la qualité</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className={`w-3 h-3 rounded-full mt-1 ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                  <div>
+                    <span className={`font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Docker ready :</span>
+                    <span className="ml-2">Configuration complète Docker et Docker Compose pour l'environnement de développement</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className={`w-3 h-3 rounded-full mt-1 ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                  <div>
+                    <span className={`font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Déployé en production :</span>
+                    <span className="ml-2">Frontend sur Vercel et Backend + PostgreSQL sur Render avec résolution CORS cross-origin</span>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className={`w-3 h-3 rounded-full mt-1 ${darkMode ? 'bg-green-500' : 'bg-green-600'} shadow-sm`}></div>
+                  <div>
+                    <span className={`font-bold ${darkMode ? 'text-green-400' : 'text-green-600'}`}>Gestion d'état avancée :</span>
+                    <span className="ml-2">React Query pour la gestion des données et synchronisation avec l'API</span>
+                  </div>
                 </li>
               </>
             )}
@@ -426,7 +502,20 @@ export default function ProjectDetailModal({
             className={`px-6 py-3 rounded-xl font-medium flex items-center gap-3 transition-all duration-200 ${darkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-500 hover:bg-green-600'} text-white shadow-lg hover:shadow-xl`}
           >
             <div className="w-2 h-2 rounded-full bg-white"></div>
-            Voir la démo
+            Voir la démo (Frontend)
+          </motion.a>
+        )}
+        {selectedProject.liveBackend && (
+          <motion.a 
+            href={selectedProject.liveBackend} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            className={`px-6 py-3 rounded-xl font-medium flex items-center gap-3 transition-all duration-200 ${darkMode ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-indigo-500 hover:bg-indigo-600'} text-white shadow-lg hover:shadow-xl`}
+          >
+            <div className="w-2 h-2 rounded-full bg-white"></div>
+            API Backend
           </motion.a>
         )}
         <motion.button
