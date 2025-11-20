@@ -476,7 +476,7 @@ export default function ProjectDetailModal({
             className={`px-6 py-3 rounded-xl font-medium flex items-center gap-3 transition-all duration-200 ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white' : 'bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-900'} shadow-md hover:shadow-lg`}
           >
             <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-gray-400' : 'bg-gray-600'}`}></div>
-            Frontend GitHub
+            {selectedProject.githubBackend ? 'Frontend GitHub' : 'GitHub'}
           </motion.a>
         )}
         {selectedProject.githubBackend && (
@@ -502,20 +502,7 @@ export default function ProjectDetailModal({
             className={`px-6 py-3 rounded-xl font-medium flex items-center gap-3 transition-all duration-200 ${darkMode ? 'bg-green-600 hover:bg-green-700' : 'bg-green-500 hover:bg-green-600'} text-white shadow-lg hover:shadow-xl`}
           >
             <div className="w-2 h-2 rounded-full bg-white"></div>
-            Voir la démo (Frontend)
-          </motion.a>
-        )}
-        {selectedProject.liveBackend && (
-          <motion.a 
-            href={selectedProject.liveBackend} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className={`px-6 py-3 rounded-xl font-medium flex items-center gap-3 transition-all duration-200 ${darkMode ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-indigo-500 hover:bg-indigo-600'} text-white shadow-lg hover:shadow-xl`}
-          >
-            <div className="w-2 h-2 rounded-full bg-white"></div>
-            API Backend
+            Voir la démo
           </motion.a>
         )}
         <motion.button
