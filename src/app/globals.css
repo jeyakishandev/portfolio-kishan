@@ -128,52 +128,8 @@ a:focus {
   }
 }
 
-/* Effets visuels subtils et atypiques */
-@keyframes subtle-glow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes pulse-subtle {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-.glow-effect {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.glow-effect:hover {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-}
-
-/* Timeline verticale subtile */
-.timeline-line {
-  position: relative;
-}
-
-.timeline-line::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, #3b82f6 0%, #10b981 100%);
-  opacity: 0.3;
-}
-
 /* Mode sombre - override des variables */
 .dark {
   --background: var(--bg-dark);
   --foreground: var(--text-dark);
-}
-
-/* Gradient text subtil */
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }

@@ -1,13 +1,14 @@
 "use client";
 import Layout from "@/components/Layout";
-import Hero from "@/components/sections/Hero";
+import Skills from "@/components/sections/Skills";
 import { useTheme } from "@/contexts/ThemeContext";
 
-export default function HomePage() {
+export default function SkillsPage() {
   const { darkMode } = useTheme();
   return (
     <Layout>
-      <Hero darkMode={darkMode} />
+      <Skills darkMode={darkMode} />
     </Layout>
   );
 }
+

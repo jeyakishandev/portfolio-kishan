@@ -1,13 +1,14 @@
 "use client";
 import Layout from "@/components/Layout";
-import Hero from "@/components/sections/Hero";
+import Experience from "@/components/sections/Experience";
 import { useTheme } from "@/contexts/ThemeContext";
 
-export default function HomePage() {
+export default function ExperiencePage() {
   const { darkMode } = useTheme();
   return (
     <Layout>
-      <Hero darkMode={darkMode} />
+      <Experience darkMode={darkMode} />
     </Layout>
   );
 }
+
