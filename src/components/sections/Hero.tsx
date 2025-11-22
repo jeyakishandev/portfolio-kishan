@@ -16,7 +16,7 @@ export default function Hero({ darkMode }: HeroProps) {
   ];
 
   return (
-    <section className="relative h-[90vh] sm:h-[85vh] flex items-center justify-center overflow-hidden pt-4 sm:pt-8">
+    <section className="relative h-[90vh] sm:h-[85vh] flex items-center justify-center overflow-hidden pt-20 sm:pt-24">
       {/* Background animé avec particules */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-br ${
