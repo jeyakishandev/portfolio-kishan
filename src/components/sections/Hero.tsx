@@ -16,7 +16,7 @@ export default function Hero({ darkMode }: HeroProps) {
   ];
 
   return (
-    <section className="relative h-[85vh] flex items-center justify-center overflow-hidden pt-8">
+    <section className="relative h-[90vh] sm:h-[85vh] flex items-center justify-center overflow-hidden pt-4 sm:pt-8">
       {/* Background animé avec particules */}
       <div className="absolute inset-0 overflow-hidden">
         <div className={`absolute inset-0 bg-gradient-to-br ${
@@ -79,7 +79,7 @@ export default function Hero({ darkMode }: HeroProps) {
       </div>
 
       {/* Contenu principal */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 sm:mt-4">
         <div className="text-center mb-16">
           {/* Logo animé avec effet de rotation au hover */}
           <motion.div
@@ -189,7 +189,7 @@ export default function Hero({ darkMode }: HeroProps) {
               Développeur Full-Stack
             </motion.p>
             
-            <p className="text-lg sm:text-xl md:text-xl mb-8 text-[#94a3b8] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-[#94a3b8] max-w-3xl mx-auto leading-relaxed px-4">
               Je transforme des idées en applications web performantes.<br />
               <span className="text-[#3b82f6] font-medium">Spécialisé en React, Node.js et PostgreSQL.</span>
             </p>
@@ -200,7 +200,7 @@ export default function Hero({ darkMode }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 max-w-2xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-2xl mx-auto px-4"
           >
             {stats.map((stat, index) => {
               const Icon = stat.icon;
@@ -211,17 +211,17 @@ export default function Hero({ darkMode }: HeroProps) {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4 + index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className={`p-3 rounded-lg ${
+                  className={`p-2 sm:p-3 rounded-lg ${
                     darkMode ? 'bg-[#1e293b]/50 backdrop-blur-sm border border-[#334155]' : 'bg-white/50 backdrop-blur-sm border border-[#e2e8f0]'
                   }`}
                 >
-                  <Icon className={`w-6 h-6 mx-auto mb-2 ${
+                  <Icon className={`w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-1 sm:mb-2 ${
                     index % 4 === 0 ? 'text-[#3b82f6]' : 
                     index % 4 === 1 ? 'text-[#10b981]' : 
                     index % 4 === 2 ? 'text-[#8b5cf6]' : 'text-[#f59e0b]'
                   }`} />
-                  <div className="text-2xl font-bold mb-1">{stat.value}</div>
-                  <div className="text-xs text-[#64748b]">{stat.label}</div>
+                  <div className="text-xl sm:text-2xl font-bold mb-1">{stat.value}</div>
+                  <div className="text-xs sm:text-xs text-[#64748b]">{stat.label}</div>
                 </motion.div>
               );
             })}
@@ -232,7 +232,7 @@ export default function Hero({ darkMode }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
           >
             <motion.div
               whileHover={{ scale: 1.05, y: -2 }}
@@ -240,7 +240,7 @@ export default function Hero({ darkMode }: HeroProps) {
             >
               <Link
                 href="/projects"
-                className={`group relative px-10 py-5 rounded-2xl font-semibold text-lg overflow-hidden block ${
+                className={`group relative px-6 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg overflow-hidden block ${
                   darkMode
                     ? 'bg-gradient-to-r from-[#3b82f6] to-[#10b981] hover:from-[#2563eb] hover:to-[#059669] text-white shadow-xl shadow-[#3b82f6]/30'
                     : 'bg-gradient-to-r from-[#3b82f6] to-[#10b981] hover:from-[#2563eb] hover:to-[#059669] text-white shadow-xl shadow-[#3b82f6]/20'
@@ -268,7 +268,7 @@ export default function Hero({ darkMode }: HeroProps) {
             >
               <Link
                 href="/contact"
-                className={`px-10 py-5 rounded-2xl font-semibold text-lg border-2 transition-all block ${
+                className={`px-6 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg border-2 transition-all block ${
                   darkMode
                     ? 'border-[#3b82f6] hover:border-[#10b981] hover:bg-[#10b981]/10 text-[#e2e8f0] shadow-lg'
                     : 'border-[#3b82f6] hover:border-[#10b981] hover:bg-[#10b981]/10 text-[#1e293b] shadow-lg'

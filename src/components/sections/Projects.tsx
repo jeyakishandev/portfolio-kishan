@@ -47,7 +47,7 @@ export default function Projects({ darkMode, onProjectClick }: ProjectsProps) {
   };
 
   return (
-    <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -55,21 +55,21 @@ export default function Projects({ darkMode, onProjectClick }: ProjectsProps) {
         transition={{ duration: 0.6 }}
       >
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">Mes Projets</h2>
-          <p className="text-lg text-[#64748b] max-w-2xl mx-auto mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 px-4">Mes Projets</h2>
+          <p className="text-base sm:text-lg text-[#64748b] max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
             Découvrez mes réalisations, des applications web complètes aux projets collaboratifs. 
             Chaque projet reflète ma passion pour le développement et l'innovation.
           </p>
 
           {/* Filtres */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4">
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setFilter(category.id)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
                   filter === category.id
                     ? darkMode
                       ? 'bg-[#3b82f6] text-white shadow-lg shadow-[#3b82f6]/30'
@@ -95,7 +95,7 @@ export default function Projects({ darkMode, onProjectClick }: ProjectsProps) {
         </div>
 
         {/* Grille des projets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {filteredProjects.map((project, index) => {
             const projectType = getProjectType(project);
             const projectStatus = getProjectStatus(project);

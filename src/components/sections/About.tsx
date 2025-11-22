@@ -54,17 +54,17 @@ export default function About({ darkMode }: AboutProps) {
   ];
 
   return (
-    <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">À propos de moi</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center px-4">À propos de moi</h2>
         
         {/* Carte principale */}
-        <div className={`rounded-2xl p-8 mb-12 ${
+        <div className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-8 sm:mb-12 ${
           darkMode ? 'bg-[#1e293b] border border-[#334155]' : 'bg-[#f8fafc] border border-[#e2e8f0]'
         }`}>
           <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -74,7 +74,7 @@ export default function About({ darkMode }: AboutProps) {
               transition={{ duration: 0.3 }}
               className="flex-shrink-0"
             >
-              <div className="w-40 h-40 rounded-2xl bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] flex items-center justify-center text-6xl font-bold text-white shadow-xl">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] flex items-center justify-center text-4xl sm:text-6xl font-bold text-white shadow-xl">
                 K
               </div>
             </motion.div>
