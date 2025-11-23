@@ -93,13 +93,47 @@ export const projects: Project[] = [
     live: "https://devboard.demo.com"
   },
   {
-    id: "conquete-monde",
-    title: "À la conquête du monde",
-    description: "Blog de voyage et de partage d'expériences avec galerie photos",
-    image: "/api/placeholder/600/400",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "MDX"],
-    github: "https://github.com/jeyakishandev/conquete-monde",
-    live: "https://conquete-monde.demo.com"
+    id: "a-la-conquete-du-monde",
+    title: "À la Conquête du Monde",
+    description: "Application web fullstack moderne permettant aux utilisateurs de découvrir et partager des récits de voyage avec authentification, interactions sociales et mode sombre/clair.",
+    fullDescription: "À la Conquête du Monde est une application web fullstack moderne qui permet aux utilisateurs de découvrir et partager des récits de voyage. L'application offre une expérience utilisateur fluide avec un design responsive et un mode sombre/clair qui s'adapte aux préférences de chaque utilisateur. J'ai développé cette application pour mettre en pratique mes compétences en React, Node.js et les technologies modernes. L'objectif était de créer une interface moderne avec Tailwind CSS, des animations et micro-interactions, ainsi qu'un système complet de gestion de contenu avec authentification JWT, CRUD complet des articles, système de likes, favoris, commentaires et partage social.",
+    image: "/screenshots/homepage.png",
+    technologies: [
+      "React 18",
+      "Vite",
+      "React Router",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "Prisma ORM",
+      "JWT",
+      "bcryptjs",
+      "PostgreSQL",
+      "Docker",
+      "Axios"
+    ],
+    github: "https://github.com/jeyakishandev/a-la-conquete-du-monde",
+    features: [
+      "Authentification JWT avec inscription/connexion",
+      "CRUD complet des articles de voyage",
+      "Système de catégories et filtres",
+      "Recherche et pagination",
+      "Système de likes et favoris",
+      "Commentaires sur les articles",
+      "Partage social (Facebook, Twitter, WhatsApp)",
+      "Catalogue de destinations avec filtres par continent",
+      "Compteur de vues et statistiques d'engagement",
+      "Mode sombre/clair avec transitions fluides",
+      "Design responsive mobile-first",
+      "Animations et glass-morphism"
+    ],
+    stats: {
+      duration: "2-3 mois",
+      team: "Solo",
+      linesOfCode: "~5000 lignes",
+      endpoints: "18 routes API",
+      components: "8+ composants React"
+    }
   }
 ];
 
