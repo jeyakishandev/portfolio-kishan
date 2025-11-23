@@ -25,7 +25,7 @@ export const projects: Project[] = [
       "Documentation Swagger complète"
     ],
     stats: {
-      duration: "2-3 semaines",
+      duration: "1 mois",
       team: "4 développeurs",
       linesOfCode: "~4000 lignes",
       endpoints: "23 routes API",
