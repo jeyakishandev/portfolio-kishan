@@ -18,14 +18,20 @@ export default function Projects({ darkMode, onProjectClick }: ProjectsProps) {
     { id: "all", label: "Tous les projets", count: projects.length },
     { id: "fullstack", label: "Full-Stack", count: projects.filter(p => p.technologies.includes("React") && (p.technologies.includes("Node.js") || p.technologies.includes("Express.js"))).length },
     { id: "frontend", label: "Front-End", count: projects.filter(p => p.technologies.includes("React") || p.technologies.includes("Next.js")).length },
-    { id: "team", label: "En équipe", count: projects.filter(p => p.stats?.team && p.stats.team !== "Solo (développement fullstack)").length }
+    { id: "team", label: "En équipe", count: projects.filter(p => {
+      const team = p.stats?.team?.toLowerCase() || "";
+      return team && !team.includes("solo") && (team.includes("développeurs") || team.includes("équipe") || /\d/.test(team));
+    }).length }
   ];
 
   const filteredProjects = projects.filter(project => {
     if (filter === "all") return true;
     if (filter === "fullstack") return project.technologies.includes("React") && (project.technologies.includes("Node.js") || project.technologies.includes("Express.js"));
     if (filter === "frontend") return project.technologies.includes("React") || project.technologies.includes("Next.js");
-    if (filter === "team") return project.stats?.team && project.stats.team !== "Solo (développement fullstack)";
+    if (filter === "team") {
+      const team = project.stats?.team?.toLowerCase() || "";
+      return team && !team.includes("solo") && (team.includes("développeurs") || team.includes("équipe") || /\d/.test(team));
+    }
     return true;
   });
 

@@ -84,15 +84,6 @@ export const projects: Project[] = [
     }
   },
   {
-    id: "devboard",
-    title: "DevBoard",
-    description: "Board collaboratif style Kanban pour équipes de développement",
-    image: "/api/placeholder/600/400",
-    technologies: ["React", "Node.js", "Docker", "Vitest"],
-    github: "https://github.com/jeyakishandev",
-    live: "https://devboard.demo.com"
-  },
-  {
     id: "a-la-conquete-du-monde",
     title: "À la Conquête du Monde",
     description: "Application web fullstack moderne permettant aux utilisateurs de découvrir et partager des récits de voyage avec authentification, interactions sociales et mode sombre/clair.",
@@ -113,6 +104,7 @@ export const projects: Project[] = [
       "Axios"
     ],
     github: "https://github.com/jeyakishandev/a-la-conquete-du-monde",
+    live: "https://conquete-frontend.onrender.com",
     features: [
       "Authentification JWT avec inscription/connexion",
       "CRUD complet des articles de voyage",
