@@ -126,6 +126,36 @@ export const projects: Project[] = [
       endpoints: "18 routes API",
       components: "8+ composants React"
     }
+  },
+  {
+    id: "time-swap-network",
+    title: "Time-Swap Network",
+    description: "Plateforme d'échange de crédits temps avec authentification sécurisée, marketplace de services et système de transactions atomiques",
+    fullDescription: "Time-Swap Network est mon premier projet Full Stack ambitieux. Il s'agit d'une plateforme bancaire sécurisée permettant aux utilisateurs d'échanger des crédits temps entre eux, de créer et réserver des services, et de gérer leurs transactions de manière sécurisée.\n\nLe projet combine plusieurs concepts avancés : authentification JWT avec cookies HTTP-only, transactions atomiques avec Prisma pour garantir la cohérence des données, système de notifications en temps réel avec Socket.io, et une interface utilisateur moderne avec Next.js 14 et Tailwind CSS.\n\nJ'ai appris énormément sur ce projet : les transactions atomiques qui résolvent les problèmes de cohérence des données, l'authentification sécurisée avec JWT, l'architecture modulaire de NestJS, et l'importance des tests unitaires (71% de couverture sur les services critiques).",
+    image: "/time-swap.png",
+    video: "/api/placeholder/video",
+    technologies: ["Next.js 14", "TypeScript", "NestJS", "Prisma", "PostgreSQL", "SQLite", "JWT", "Tailwind CSS", "Socket.io", "Docker", "Jest", "bcrypt"],
+    github: "https://github.com/votre-username/Time-Swap",
+    githubBackend: "https://github.com/votre-username/Time-Swap",
+    features: [
+      "Authentification sécurisée avec JWT et cookies HTTP-only",
+      "Transfert de crédits temps entre utilisateurs avec transactions atomiques",
+      "Marketplace de services avec catégories et recherche",
+      "Système de réservation de services avec gestion des statuts",
+      "Système d'avis et de notation (1-5 étoiles)",
+      "Notifications en temps réel avec Socket.io",
+      "Tableau de bord complet avec statistiques et historique",
+      "API REST documentée avec Swagger",
+      "Tests unitaires avec 71% de couverture sur les services critiques",
+      "Déploiement Docker avec docker-compose"
+    ],
+    stats: {
+      duration: "2-3 mois",
+      team: "Solo",
+      linesOfCode: "~12 400 lignes",
+      endpoints: "35+ routes API",
+      components: "20+ composants React"
+    }
   }
 ];
 
