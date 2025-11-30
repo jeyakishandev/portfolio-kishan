@@ -297,6 +297,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/jeya-kishan-karunanithy",
   github: "https://github.com/jeyakishandev",
   avatar: "/profile-photo.jpg",
+  cv: "/cv.pdf",
   bio: "Ancien agent de trafic aérien, j'ai choisi de me reconvertir dans le développement web pour allier logique, créativité et impact concret. Près d'un an d'expérience cumulée avec une formation intensive full-stack et des projets concrets en freelance."
 };
 

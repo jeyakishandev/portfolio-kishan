@@ -248,26 +248,32 @@ export default function Contact({ darkMode }: ContactProps) {
             </div>
 
             {/* CV Download */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8 }}
-              className="mt-6"
-            >
-              <motion.button
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
-                  darkMode
-                    ? 'bg-gradient-to-r from-[#3b82f6] to-[#10b981] hover:from-[#2563eb] hover:to-[#059669] text-white shadow-lg shadow-[#3b82f6]/30'
-                    : 'bg-gradient-to-r from-[#3b82f6] to-[#10b981] hover:from-[#2563eb] hover:to-[#059669] text-white shadow-lg shadow-[#3b82f6]/20'
-                }`}
+            {personalInfo.cv && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.8 }}
+                className="mt-6"
               >
-                <Download className="w-5 h-5" />
-                Télécharger mon CV
-              </motion.button>
-            </motion.div>
+                <motion.a
+                  href={personalInfo.cv}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
+                    darkMode
+                      ? 'bg-gradient-to-r from-[#3b82f6] to-[#10b981] hover:from-[#2563eb] hover:to-[#059669] text-white shadow-lg shadow-[#3b82f6]/30'
+                      : 'bg-gradient-to-r from-[#3b82f6] to-[#10b981] hover:from-[#2563eb] hover:to-[#059669] text-white shadow-lg shadow-[#3b82f6]/20'
+                  }`}
+                >
+                  <Download className="w-5 h-5" />
+                  Télécharger mon CV
+                </motion.a>
+              </motion.div>
+            )}
           </motion.div>
 
           {/* Formulaire de contact */}

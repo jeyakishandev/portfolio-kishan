@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Code, Database, Rocket, Shield } from "lucide-react";
+import { Code, Database, Rocket, Shield, Download } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 
 interface HeroProps {
@@ -289,6 +289,29 @@ export default function Hero({ darkMode }: HeroProps) {
                 Me contacter
               </Link>
             </motion.div>
+            
+            {personalInfo.cv && (
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <a
+                  href={personalInfo.cv}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-center gap-2 px-6 sm:px-10 py-3 sm:py-5 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg border-2 transition-all ${
+                    darkMode
+                      ? 'border-[#8b5cf6] hover:border-[#10b981] hover:bg-[#8b5cf6]/10 text-[#e2e8f0] shadow-lg'
+                      : 'border-[#8b5cf6] hover:border-[#10b981] hover:bg-[#8b5cf6]/10 text-[#1e293b] shadow-lg'
+                  }`}
+                >
+                  <Download className="w-5 h-5" />
+                  <span className="hidden sm:inline">Télécharger CV</span>
+                  <span className="sm:hidden">CV</span>
+                </a>
+              </motion.div>
+            )}
           </motion.div>
         </div>
 
