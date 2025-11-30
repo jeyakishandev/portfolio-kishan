@@ -17,6 +17,8 @@ export interface Project {
     linesOfCode?: string;
     endpoints?: string;
     components?: string;
+    databaseModels?: string;
+    features?: string;
   };
 }
 
