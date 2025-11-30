@@ -98,50 +98,59 @@ export default function Experience({ darkMode }: ExperienceProps) {
                     >
                       {/* Header de la carte */}
                       <div className="p-4 sm:p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                        <div className="flex items-start justify-between gap-4 mb-4">
                           <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
                             <div className={`p-2 sm:p-3 rounded-xl flex-shrink-0 ${colors.bg}`}>
                               <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${colors.primary}`} />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
-                                <h3 className="text-lg sm:text-xl font-bold break-words">{exp.title}</h3>
-                                {isCurrentJob && (
-                                  <motion.span
-                                    animate={{ scale: [1, 1.05, 1] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                    className="px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30 self-start sm:self-auto"
-                                  >
+                              <div className="flex items-start justify-between gap-2 mb-2">
+                                <div className="flex flex-col gap-2 flex-1 min-w-0">
+                                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                                    <h3 className="text-lg sm:text-xl font-bold break-words">{exp.title}</h3>
+                                    {isCurrentJob && (
+                                      <motion.span
+                                        animate={{ scale: [1, 1.05, 1] }}
+                                        transition={{ duration: 2, repeat: Infinity }}
+                                        className="px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30 self-start sm:self-auto"
+                                      >
+                                        <div className="flex items-center gap-1">
+                                          <div className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+                                          {exp.status}
+                                        </div>
+                                      </motion.span>
+                                    )}
+                                  </div>
+                                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base text-[#64748b]">
                                     <div className="flex items-center gap-1">
-                                      <div className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
-                                      {exp.status}
+                                      <Building className="w-4 h-4 flex-shrink-0" />
+                                      <span className="font-medium text-[#3b82f6] break-words">{exp.company}</span>
                                     </div>
-                                  </motion.span>
-                                )}
-                              </div>
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base text-[#64748b] mb-2">
-                                <div className="flex items-center gap-1">
-                                  <Building className="w-4 h-4 flex-shrink-0" />
-                                  <span className="font-medium text-[#3b82f6] break-words">{exp.company}</span>
-                                </div>
-                                <div className="flex items-center gap-1">
-                                  <Calendar className="w-4 h-4 flex-shrink-0" />
-                                  <span>{exp.period}</span>
+                                    <div className="flex items-center gap-1">
+                                      <Calendar className="w-4 h-4 flex-shrink-0" />
+                                      <span>{exp.period}</span>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                              <p className="text-sm sm:text-base text-[#64748b] leading-relaxed">{exp.description}</p>
+                              <p className="text-sm sm:text-base text-[#64748b] leading-relaxed mb-4 sm:mb-0">{exp.description}</p>
                             </div>
                           </div>
                           
-                          <motion.div
+                          <motion.button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setExpandedExperience(isExpanded ? null : index);
+                            }}
                             animate={{ rotate: isExpanded ? 180 : 0 }}
                             transition={{ duration: 0.3 }}
-                            className={`p-2 rounded-lg flex-shrink-0 self-start sm:self-auto ${
+                            className={`p-2 rounded-lg flex-shrink-0 self-start mt-1 ${
                               darkMode ? 'hover:bg-[#334155]' : 'hover:bg-[#f1f5f9]'
                             }`}
+                            aria-label={isExpanded ? "Réduire" : "Développer"}
                           >
-                            <CheckCircle className="w-5 h-5 text-[#64748b]" />
-                          </motion.div>
+                            <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#64748b]" />
+                          </motion.button>
                         </div>
 
                         {/* Technologies */}
