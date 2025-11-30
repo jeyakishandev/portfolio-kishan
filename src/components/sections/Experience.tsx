@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Building, Award, Code, Users, Zap, Target, CheckCircle, Star, Briefcase, GraduationCap, Plane } from "lucide-react";
 import { experiences } from "@/lib/data";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface ExperienceProps {
   darkMode: boolean;
@@ -10,6 +10,23 @@ interface ExperienceProps {
 
 export default function Experience({ darkMode }: ExperienceProps) {
   const [expandedExperience, setExpandedExperience] = useState<number | null>(0); // Premier élément ouvert par défaut
+  const experienceRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const handleExpand = (index: number) => {
+    const wasExpanded = expandedExperience === index;
+    setExpandedExperience(wasExpanded ? null : index);
+    
+    // Scroll vers l'élément après un court délai pour laisser l'animation se faire
+    if (!wasExpanded) {
+      setTimeout(() => {
+        experienceRefs.current[index]?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start',
+          inline: 'nearest'
+        });
+      }, 100);
+    }
+  };
 
   const getExperienceIcon = (title: string) => {
     if (title.includes("Développeur")) return Code;
@@ -63,6 +80,9 @@ export default function Experience({ darkMode }: ExperienceProps) {
               return (
                 <motion.div
                   key={index}
+                  ref={(el) => {
+                    experienceRefs.current[index] = el;
+                  }}
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -85,7 +105,7 @@ export default function Experience({ darkMode }: ExperienceProps) {
                   <div className="ml-8 sm:ml-16">
                     <motion.div
                       whileHover={{ y: -4 }}
-                      onClick={() => setExpandedExperience(isExpanded ? null : index)}
+                      onClick={() => handleExpand(index)}
                       className={`cursor-pointer rounded-2xl border transition-all duration-300 ${
                         isExpanded
                           ? darkMode
@@ -140,7 +160,7 @@ export default function Experience({ darkMode }: ExperienceProps) {
                           <motion.button
                             onClick={(e) => {
                               e.stopPropagation();
-                              setExpandedExperience(isExpanded ? null : index);
+                              handleExpand(index);
                             }}
                             animate={{ rotate: isExpanded ? 180 : 0 }}
                             transition={{ duration: 0.3 }}
