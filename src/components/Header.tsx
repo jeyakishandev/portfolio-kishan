@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, Sun, Moon, Linkedin, Menu, X, Mail } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { personalInfo } from "@/lib/data";
 import { useState } from "react";
 
 export default function Header() {
@@ -74,7 +76,17 @@ export default function Header() {
                   : 'bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] text-white shadow-xl'
               }`}
             >
-              K
+              {personalInfo.avatar ? (
+                <Image
+                  src={personalInfo.avatar}
+                  alt={personalInfo.name}
+                  fill
+                  className="object-cover rounded-xl"
+                  sizes="48px"
+                />
+              ) : (
+                "K"
+              )}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                 initial={{ x: "-100%" }}

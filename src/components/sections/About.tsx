@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin, Calendar, Award, Target, Heart, Code2, Plane, Users } from "lucide-react";
 import { personalInfo } from "@/lib/data";
@@ -74,8 +75,18 @@ export default function About({ darkMode }: AboutProps) {
               transition={{ duration: 0.3 }}
               className="flex-shrink-0"
             >
-              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] flex items-center justify-center text-4xl sm:text-6xl font-bold text-white shadow-xl">
-                K
+              <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] flex items-center justify-center text-4xl sm:text-6xl font-bold text-white shadow-xl overflow-hidden">
+                {personalInfo.avatar ? (
+                  <Image
+                    src={personalInfo.avatar}
+                    alt={personalInfo.name}
+                    fill
+                    className="object-cover rounded-xl sm:rounded-2xl"
+                    sizes="(max-width: 640px) 128px, 160px"
+                  />
+                ) : (
+                  "K"
+                )}
               </div>
             </motion.div>
             

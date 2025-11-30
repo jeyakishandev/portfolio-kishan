@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Code, Database, Rocket, Shield } from "lucide-react";
+import { personalInfo } from "@/lib/data";
 
 interface HeroProps {
   darkMode: boolean;
@@ -104,12 +106,22 @@ export default function Hero({ darkMode }: HeroProps) {
               transition={{ duration: 0.5 }}
               className="inline-block"
             >
-              <div className={`w-28 h-28 sm:w-36 sm:h-36 mx-auto rounded-3xl flex items-center justify-center font-bold text-5xl sm:text-6xl ${
+              <div className={`relative w-28 h-28 sm:w-36 sm:h-36 mx-auto rounded-3xl flex items-center justify-center font-bold text-5xl sm:text-6xl overflow-hidden ${
                 darkMode 
                   ? 'bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] text-white shadow-2xl shadow-[#3b82f6]/50' 
                   : 'bg-gradient-to-br from-[#3b82f6] via-[#8b5cf6] to-[#10b981] text-white shadow-2xl shadow-[#3b82f6]/30'
               }`}>
-                K
+                {personalInfo.avatar ? (
+                  <Image
+                    src={personalInfo.avatar}
+                    alt={personalInfo.name}
+                    fill
+                    className="object-cover rounded-3xl"
+                    sizes="(max-width: 640px) 112px, 144px"
+                  />
+                ) : (
+                  "K"
+                )}
               </div>
             </motion.div>
           </motion.div>
