@@ -20,10 +20,17 @@ export default function Skills({ darkMode }: SkillsProps) {
       items: [
         { name: "React.js", experience: "Avancé", description: "Hooks, Context, Performance, Testing" },
         { name: "Next.js", experience: "Avancé", description: "SSR, API Routes, Optimisation, Déploiement" },
-        { name: "TypeScript", experience: "Intermédiaire", description: "Types avancés, Interfaces, Génériques" },
+        { name: "TypeScript", experience: "Avancé", description: "Types avancés, Interfaces, Génériques" },
         { name: "JavaScript (ES6+)", experience: "Expert", description: "Async/Await, Modules, Classes, Closures" },
         { name: "HTML5 / CSS3", experience: "Avancé", description: "Sémantique, Flexbox, Grid, Animations" },
         { name: "Tailwind CSS", experience: "Avancé", description: "Responsive, Components, Customisation" },
+        { name: "React Router", experience: "Avancé", description: "Routing, Navigation, Protected routes" },
+        { name: "Styled Components", experience: "Intermédiaire", description: "CSS-in-JS, Theming, Dynamic styles" },
+        { name: "Framer Motion", experience: "Avancé", description: "Animations, Transitions, Gestures" },
+        { name: "React Query", experience: "Intermédiaire", description: "Data fetching, Caching, Synchronisation" },
+        { name: "Zustand", experience: "Intermédiaire", description: "State management, Stores, Persistence" },
+        { name: "Axios", experience: "Avancé", description: "HTTP client, Interceptors, Error handling" },
+        { name: "Vite", experience: "Avancé", description: "Build tool, HMR, Optimisation" },
         { name: "Bootstrap", experience: "Intermédiaire", description: "Grilles, Composants, Thèmes" }
       ]
     },
@@ -34,8 +41,12 @@ export default function Skills({ darkMode }: SkillsProps) {
       bgColor: darkMode ? "from-[#10b981]/10 to-[#059669]/5" : "from-[#10b981]/5 to-[#059669]/3",
       items: [
         { name: "Node.js avec Express", experience: "Avancé", description: "API REST, Middleware, Routing, Sécurité" },
+        { name: "NestJS", experience: "Intermédiaire", description: "Architecture modulaire, Dependency injection, Modules" },
         { name: "API REST", experience: "Expert", description: "CRUD, Authentification, Documentation, Versioning" },
         { name: "Sequelize / Prisma", experience: "Avancé", description: "ORM, Relations, Migrations, Optimisation" },
+        { name: "Socket.io", experience: "Intermédiaire", description: "WebSockets, Temps réel, Notifications push" },
+        { name: "Swagger", experience: "Intermédiaire", description: "Documentation API, OpenAPI, Endpoints" },
+        { name: "Express Validator", experience: "Intermédiaire", description: "Validation données, Sanitization, Middleware" },
         { name: "Intégration APIs tierces", experience: "Intermédiaire", description: "OAuth, Webhooks, SDKs, Rate limiting" }
       ]
     },
@@ -46,6 +57,7 @@ export default function Skills({ darkMode }: SkillsProps) {
       bgColor: darkMode ? "from-[#8b5cf6]/10 to-[#7c3aed]/5" : "from-[#8b5cf6]/5 to-[#7c3aed]/3",
       items: [
         { name: "PostgreSQL", experience: "Avancé", description: "Requêtes complexes, Index, Performance, Triggers" },
+        { name: "SQLite", experience: "Intermédiaire", description: "Base de données légère, Transactions, Migrations" },
         { name: "MySQL", experience: "Avancé", description: "Optimisation, Procédures stockées, Réplication" },
         { name: "Conception et modélisation", experience: "Expert", description: "Normalisation, Relations, Contraintes" },
         { name: "MCD/MLD, Merise", experience: "Avancé", description: "Analyse fonctionnelle, Conception logique" },
@@ -60,6 +72,9 @@ export default function Skills({ darkMode }: SkillsProps) {
       items: [
         { name: "JWT (JSON Web Token)", experience: "Expert", description: "Authentification, Refresh tokens, Claims" },
         { name: "Argon2", experience: "Avancé", description: "Hachage sécurisé, Salt, Configuration" },
+        { name: "bcrypt/bcryptjs", experience: "Avancé", description: "Hachage mots de passe, Salt rounds, Sécurité" },
+        { name: "Helmet", experience: "Intermédiaire", description: "Sécurité HTTP headers, Protection XSS, CSRF" },
+        { name: "Rate Limiting", experience: "Intermédiaire", description: "Protection DDoS, Limitation requêtes, Throttling" },
         { name: "Gestion des rôles", experience: "Avancé", description: "RBAC, Permissions, Middleware" },
         { name: "Autorisations granulaires", experience: "Intermédiaire", description: "Guards, Policies, Validation" }
       ]
@@ -71,8 +86,10 @@ export default function Skills({ darkMode }: SkillsProps) {
       bgColor: darkMode ? "from-[#ef4444]/10 to-[#dc2626]/5" : "from-[#ef4444]/5 to-[#dc2626]/3",
       items: [
         { name: "Git / GitHub", experience: "Expert", description: "Workflow pro, Branches, PR, Résolution conflits" },
-        { name: "Docker", experience: "Intermédiaire", description: "Conteneurs, Docker Compose, Multi-stage" },
-        { name: "CI/CD", experience: "Avancé", description: "Vercel, Railway, GitHub Actions, Tests auto" },
+        { name: "Docker", experience: "Avancé", description: "Conteneurs, Docker Compose, Multi-stage, Orchestration" },
+        { name: "CI/CD", experience: "Avancé", description: "Vercel, Railway, Render, GitHub Actions, Tests auto" },
+        { name: "Jest", experience: "Intermédiaire", description: "Tests unitaires, Mocks, Coverage, TDD" },
+        { name: "Vitest", experience: "Intermédiaire", description: "Tests rapides, ESM, Compatibilité Vite" },
         { name: "Agile / Scrum", experience: "Avancé", description: "Sprints, Kanban, Rétrospectives, Équipe" }
       ]
     },

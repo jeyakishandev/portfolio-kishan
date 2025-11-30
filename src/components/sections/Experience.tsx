@@ -49,7 +49,7 @@ export default function Experience({ darkMode }: ExperienceProps) {
         {/* Timeline */}
         <div className="relative">
           {/* Ligne de timeline */}
-          <div className={`absolute left-8 top-0 bottom-0 w-0.5 ${
+          <div className={`absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 ${
             darkMode ? 'bg-[#334155]' : 'bg-[#e2e8f0]'
           }`} />
 
@@ -72,7 +72,7 @@ export default function Experience({ darkMode }: ExperienceProps) {
                   {/* Point sur la timeline */}
                   <motion.div
                     whileHover={{ scale: 1.2 }}
-                    className={`absolute left-6 w-4 h-4 rounded-full border-4 ${
+                    className={`absolute left-2 sm:left-6 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 sm:border-4 ${
                       isCurrentJob 
                         ? 'bg-[#10b981] border-[#10b981] shadow-lg shadow-[#10b981]/50'
                         : darkMode 
@@ -82,7 +82,7 @@ export default function Experience({ darkMode }: ExperienceProps) {
                   />
 
                   {/* Carte d'expérience */}
-                  <div className="ml-16">
+                  <div className="ml-8 sm:ml-16">
                     <motion.div
                       whileHover={{ y: -4 }}
                       onClick={() => setExpandedExperience(isExpanded ? null : index)}
@@ -97,20 +97,20 @@ export default function Experience({ darkMode }: ExperienceProps) {
                       } ${isCurrentJob ? 'ring-2 ring-[#10b981]/20' : ''}`}
                     >
                       {/* Header de la carte */}
-                      <div className="p-6">
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-start gap-4">
-                            <div className={`p-3 rounded-xl ${colors.bg}`}>
-                              <Icon className={`w-6 h-6 ${colors.primary}`} />
+                      <div className="p-4 sm:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                          <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
+                            <div className={`p-2 sm:p-3 rounded-xl flex-shrink-0 ${colors.bg}`}>
+                              <Icon className={`w-5 h-5 sm:w-6 sm:h-6 ${colors.primary}`} />
                             </div>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-2">
-                                <h3 className="text-xl font-bold">{exp.title}</h3>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+                                <h3 className="text-lg sm:text-xl font-bold break-words">{exp.title}</h3>
                                 {isCurrentJob && (
                                   <motion.span
                                     animate={{ scale: [1, 1.05, 1] }}
                                     transition={{ duration: 2, repeat: Infinity }}
-                                    className="px-3 py-1 rounded-full text-xs font-medium bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30"
+                                    className="px-2 sm:px-3 py-1 rounded-full text-xs font-medium bg-[#10b981]/20 text-[#10b981] border border-[#10b981]/30 self-start sm:self-auto"
                                   >
                                     <div className="flex items-center gap-1">
                                       <div className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
@@ -119,24 +119,24 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                   </motion.span>
                                 )}
                               </div>
-                              <div className="flex items-center gap-4 text-[#64748b] mb-2">
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm sm:text-base text-[#64748b] mb-2">
                                 <div className="flex items-center gap-1">
-                                  <Building className="w-4 h-4" />
-                                  <span className="font-medium text-[#3b82f6]">{exp.company}</span>
+                                  <Building className="w-4 h-4 flex-shrink-0" />
+                                  <span className="font-medium text-[#3b82f6] break-words">{exp.company}</span>
                                 </div>
                                 <div className="flex items-center gap-1">
-                                  <Calendar className="w-4 h-4" />
+                                  <Calendar className="w-4 h-4 flex-shrink-0" />
                                   <span>{exp.period}</span>
                                 </div>
                               </div>
-                              <p className="text-[#64748b] leading-relaxed">{exp.description}</p>
+                              <p className="text-sm sm:text-base text-[#64748b] leading-relaxed">{exp.description}</p>
                             </div>
                           </div>
                           
                           <motion.div
                             animate={{ rotate: isExpanded ? 180 : 0 }}
                             transition={{ duration: 0.3 }}
-                            className={`p-2 rounded-lg ${
+                            className={`p-2 rounded-lg flex-shrink-0 self-start sm:self-auto ${
                               darkMode ? 'hover:bg-[#334155]' : 'hover:bg-[#f1f5f9]'
                             }`}
                           >
@@ -177,26 +177,26 @@ export default function Experience({ darkMode }: ExperienceProps) {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
-                          className={`border-t px-6 pb-6 ${
+                          className={`border-t px-4 sm:px-6 pb-4 sm:pb-6 ${
                             darkMode ? 'border-[#334155]' : 'border-[#e2e8f0]'
                           }`}
                         >
-                          <div className="pt-6 space-y-6">
+                          <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
                             {/* Technologies détaillées */}
                             {exp.details.technologies && (
                               <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className={`p-4 rounded-xl ${
+                                className={`p-3 sm:p-4 rounded-xl ${
                                   darkMode ? 'bg-[#0f172a]/50' : 'bg-[#f8fafc]'
                                 }`}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <Code className="w-5 h-5 text-[#3b82f6]" />
-                                  <h4 className="font-semibold text-[#3b82f6]">Stack Technique</h4>
+                                  <Code className="w-4 h-4 sm:w-5 sm:h-5 text-[#3b82f6] flex-shrink-0" />
+                                  <h4 className="font-semibold text-sm sm:text-base text-[#3b82f6]">Stack Technique</h4>
                                 </div>
-                                <p className="text-sm leading-relaxed">{exp.details.technologies}</p>
+                                <p className="text-xs sm:text-sm leading-relaxed">{exp.details.technologies}</p>
                               </motion.div>
                             )}
 
@@ -206,13 +206,13 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className={`p-4 rounded-xl ${
+                                className={`p-3 sm:p-4 rounded-xl ${
                                   darkMode ? 'bg-[#0f172a]/50' : 'bg-[#f8fafc]'
                                 }`}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <Zap className="w-5 h-5 text-[#10b981]" />
-                                  <h4 className="font-semibold text-[#10b981]">Fonctionnalités Développées</h4>
+                                  <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-[#10b981] flex-shrink-0" />
+                                  <h4 className="font-semibold text-sm sm:text-base text-[#10b981]">Fonctionnalités Développées</h4>
                                 </div>
                                 <ul className="space-y-2">
                                   {exp.details.features.map((feature, i) => (
@@ -221,10 +221,10 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{ delay: 0.3 + i * 0.1 }}
-                                      className="flex items-start gap-2 text-sm"
+                                      className="flex items-start gap-2 text-xs sm:text-sm"
                                     >
-                                      <Star className="w-4 h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
-                                      <span>{feature}</span>
+                                      <Star className="w-3 h-3 sm:w-4 sm:h-4 text-[#10b981] mt-0.5 flex-shrink-0" />
+                                      <span className="break-words">{feature}</span>
                                     </motion.li>
                                   ))}
                                 </ul>
@@ -237,13 +237,13 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className={`p-4 rounded-xl ${
+                                className={`p-3 sm:p-4 rounded-xl ${
                                   darkMode ? 'bg-[#0f172a]/50' : 'bg-[#f8fafc]'
                                 }`}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <Award className="w-5 h-5 text-[#8b5cf6]" />
-                                  <h4 className="font-semibold text-[#8b5cf6]">Qualité & Sécurité</h4>
+                                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-[#8b5cf6] flex-shrink-0" />
+                                  <h4 className="font-semibold text-sm sm:text-base text-[#8b5cf6]">Qualité & Sécurité</h4>
                                 </div>
                                 <ul className="space-y-2">
                                   {exp.details.quality.map((item, i) => (
@@ -252,10 +252,10 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{ delay: 0.4 + i * 0.1 }}
-                                      className="flex items-start gap-2 text-sm"
+                                      className="flex items-start gap-2 text-xs sm:text-sm"
                                     >
-                                      <CheckCircle className="w-4 h-4 text-[#8b5cf6] mt-0.5 flex-shrink-0" />
-                                      <span>{item}</span>
+                                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#8b5cf6] mt-0.5 flex-shrink-0" />
+                                      <span className="break-words">{item}</span>
                                     </motion.li>
                                   ))}
                                 </ul>
@@ -268,13 +268,13 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className={`p-4 rounded-xl ${
+                                className={`p-3 sm:p-4 rounded-xl ${
                                   darkMode ? 'bg-[#0f172a]/50' : 'bg-[#f8fafc]'
                                 }`}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <Target className="w-5 h-5 text-[#f59e0b]" />
-                                  <h4 className="font-semibold text-[#f59e0b]">Développement</h4>
+                                  <Target className="w-4 h-4 sm:w-5 sm:h-5 text-[#f59e0b] flex-shrink-0" />
+                                  <h4 className="font-semibold text-sm sm:text-base text-[#f59e0b]">Développement</h4>
                                 </div>
                                 <ul className="space-y-2">
                                   {exp.details.development.map((item, i) => (
@@ -283,10 +283,10 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{ delay: 0.5 + i * 0.1 }}
-                                      className="flex items-start gap-2 text-sm"
+                                      className="flex items-start gap-2 text-xs sm:text-sm"
                                     >
-                                      <Code className="w-4 h-4 text-[#f59e0b] mt-0.5 flex-shrink-0" />
-                                      <span>{item}</span>
+                                      <Code className="w-3 h-3 sm:w-4 sm:h-4 text-[#f59e0b] mt-0.5 flex-shrink-0" />
+                                      <span className="break-words">{item}</span>
                                     </motion.li>
                                   ))}
                                 </ul>
@@ -299,13 +299,13 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className={`p-4 rounded-xl ${
+                                className={`p-3 sm:p-4 rounded-xl ${
                                   darkMode ? 'bg-[#0f172a]/50' : 'bg-[#f8fafc]'
                                 }`}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <Users className="w-5 h-5 text-[#ef4444]" />
-                                  <h4 className="font-semibold text-[#ef4444]">Collaboration</h4>
+                                  <Users className="w-4 h-4 sm:w-5 sm:h-5 text-[#ef4444] flex-shrink-0" />
+                                  <h4 className="font-semibold text-sm sm:text-base text-[#ef4444]">Collaboration</h4>
                                 </div>
                                 <ul className="space-y-2">
                                   {exp.details.collaboration.map((item, i) => (
@@ -314,10 +314,10 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{ delay: 0.6 + i * 0.1 }}
-                                      className="flex items-start gap-2 text-sm"
+                                      className="flex items-start gap-2 text-xs sm:text-sm"
                                     >
-                                      <Users className="w-4 h-4 text-[#ef4444] mt-0.5 flex-shrink-0" />
-                                      <span>{item}</span>
+                                      <Users className="w-3 h-3 sm:w-4 sm:h-4 text-[#ef4444] mt-0.5 flex-shrink-0" />
+                                      <span className="break-words">{item}</span>
                                     </motion.li>
                                   ))}
                                 </ul>
@@ -330,12 +330,12 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6 }}
-                                className={`p-4 rounded-xl border-l-4 border-[#3b82f6] ${
+                                className={`p-3 sm:p-4 rounded-xl border-l-4 border-[#3b82f6] ${
                                   darkMode ? 'bg-[#3b82f6]/5' : 'bg-[#3b82f6]/5'
                                 }`}
                               >
-                                <h4 className="font-semibold text-[#3b82f6] mb-2">Projet de fin de formation</h4>
-                                <p className="text-sm leading-relaxed">{exp.details.project}</p>
+                                <h4 className="font-semibold text-sm sm:text-base text-[#3b82f6] mb-2">Projet de fin de formation</h4>
+                                <p className="text-xs sm:text-sm leading-relaxed">{exp.details.project}</p>
                               </motion.div>
                             )}
 
@@ -345,12 +345,12 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.7 }}
-                                className={`p-4 rounded-xl border-l-4 border-[#10b981] ${
+                                className={`p-3 sm:p-4 rounded-xl border-l-4 border-[#10b981] ${
                                   darkMode ? 'bg-[#10b981]/5' : 'bg-[#10b981]/5'
                                 }`}
                               >
-                                <h4 className="font-semibold text-[#10b981] mb-2">Méthodologie</h4>
-                                <p className="text-sm leading-relaxed">{exp.details.methodology}</p>
+                                <h4 className="font-semibold text-sm sm:text-base text-[#10b981] mb-2">Méthodologie</h4>
+                                <p className="text-xs sm:text-sm leading-relaxed">{exp.details.methodology}</p>
                               </motion.div>
                             )}
 
@@ -360,12 +360,12 @@ export default function Experience({ darkMode }: ExperienceProps) {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.8 }}
-                                className={`p-4 rounded-xl border-l-4 border-[#8b5cf6] ${
+                                className={`p-3 sm:p-4 rounded-xl border-l-4 border-[#8b5cf6] ${
                                   darkMode ? 'bg-[#8b5cf6]/5' : 'bg-[#8b5cf6]/5'
                                 }`}
                               >
-                                <h4 className="font-semibold text-[#8b5cf6] mb-2">Compétences acquises</h4>
-                                <p className="text-sm leading-relaxed">{exp.details.skills}</p>
+                                <h4 className="font-semibold text-sm sm:text-base text-[#8b5cf6] mb-2">Compétences acquises</h4>
+                                <p className="text-xs sm:text-sm leading-relaxed">{exp.details.skills}</p>
                               </motion.div>
                             )}
                           </div>
@@ -385,21 +385,21 @@ export default function Experience({ darkMode }: ExperienceProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className={`mt-12 p-8 rounded-2xl text-center ${
+          className={`mt-8 sm:mt-12 p-6 sm:p-8 rounded-2xl text-center ${
             darkMode 
               ? 'bg-gradient-to-r from-[#3b82f6]/10 via-[#8b5cf6]/10 to-[#10b981]/10 border border-[#3b82f6]/20'
               : 'bg-gradient-to-r from-[#3b82f6]/5 via-[#8b5cf6]/5 to-[#10b981]/5 border border-[#3b82f6]/20'
           }`}
         >
-          <Briefcase className="w-8 h-8 mx-auto mb-4 text-[#3b82f6]" />
-          <h3 className="text-xl font-bold mb-4">Évolution professionnelle</h3>
-          <p className="text-[#64748b] mb-6 max-w-3xl mx-auto leading-relaxed">
+          <Briefcase className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-4 text-[#3b82f6]" />
+          <h3 className="text-lg sm:text-xl font-bold mb-4">Évolution professionnelle</h3>
+          <p className="text-sm sm:text-base text-[#64748b] mb-6 max-w-3xl mx-auto leading-relaxed px-4">
             Mon parcours illustre une progression constante : de la rigueur acquise dans l'aviation 
             aux compétences techniques du développement web. Chaque expérience m'a apporté des 
             compétences complémentaires qui font ma force aujourd'hui.
           </p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             <div className={`p-4 rounded-lg ${darkMode ? 'bg-[#1e293b]/50' : 'bg-white/50'}`}>
               <div className="text-2xl font-bold text-[#3b82f6] mb-1">5+</div>
               <div className="text-sm text-[#64748b]">Expériences</div>

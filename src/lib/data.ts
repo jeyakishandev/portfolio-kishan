@@ -162,23 +162,23 @@ export const projects: Project[] = [
 export const skills = [
   { 
     category: "Front-End", 
-    items: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "HTML5 / CSS3 (Flexbox, Grid)", "Tailwind CSS", "Bootstrap"] 
+    items: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "HTML5 / CSS3 (Flexbox, Grid)", "Tailwind CSS", "React Router", "Styled Components", "Framer Motion", "React Query", "Zustand", "Axios", "Vite", "Bootstrap"] 
   },
   { 
     category: "Back-End", 
-    items: ["Node.js avec Express", "API REST (création, sécurisation)", "Sequelize / Prisma", "Intégration APIs tierces"] 
+    items: ["Node.js avec Express", "NestJS", "API REST (création, sécurisation)", "Sequelize / Prisma", "Socket.io", "Swagger", "Express Validator", "Intégration APIs tierces"] 
   },
   { 
     category: "Bases de données", 
-    items: ["PostgreSQL", "MySQL", "Conception et modélisation", "MCD/MLD, Merise", "Optimisation requêtes"] 
+    items: ["PostgreSQL", "SQLite", "MySQL", "Conception et modélisation", "MCD/MLD, Merise", "Optimisation requêtes"] 
   },
   { 
     category: "Sécurité & Auth", 
-    items: ["JWT (JSON Web Token)", "Argon2 (hachage mots de passe)", "Gestion des rôles", "Autorisations granulaires"] 
+    items: ["JWT (JSON Web Token)", "Argon2 (hachage mots de passe)", "bcrypt/bcryptjs", "Helmet", "Rate Limiting", "Gestion des rôles", "Autorisations granulaires"] 
   },
   { 
     category: "Outils & Workflow", 
-    items: ["Git / GitHub (workflow pro)", "Docker (conteneurs)", "CI/CD (Vercel, Railway)", "Agile / Scrum"] 
+    items: ["Git / GitHub (workflow pro)", "Docker (conteneurs)", "CI/CD (Vercel, Railway, Render)", "Jest", "Vitest", "Agile / Scrum"] 
   },
   { 
     category: "Innovation & IA", 

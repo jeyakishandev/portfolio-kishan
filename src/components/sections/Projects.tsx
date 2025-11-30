@@ -15,22 +15,75 @@ export default function Projects({ darkMode, onProjectClick }: ProjectsProps) {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   const categories = [
-    { id: "all", label: "Tous les projets", count: projects.length },
-    { id: "fullstack", label: "Full-Stack", count: projects.filter(p => p.technologies.includes("React") && (p.technologies.includes("Node.js") || p.technologies.includes("Express.js"))).length },
-    { id: "frontend", label: "Front-End", count: projects.filter(p => p.technologies.includes("React") || p.technologies.includes("Next.js")).length },
-    { id: "team", label: "En équipe", count: projects.filter(p => {
-      const team = p.stats?.team?.toLowerCase() || "";
-      return team && !team.includes("solo") && (team.includes("développeurs") || team.includes("équipe") || /\d/.test(team));
-    }).length }
+    { id: "all", label: "Tous", count: projects.length, icon: Code },
+    { 
+      id: "online", 
+      label: "En ligne", 
+      count: projects.filter(p => p.live).length,
+      icon: Star
+    },
+    { 
+      id: "development", 
+      label: "En développement", 
+      count: projects.filter(p => !p.live).length,
+      icon: Calendar
+    },
+    { 
+      id: "nextjs", 
+      label: "Next.js", 
+      count: projects.filter(p => p.technologies.some(t => t.includes("Next.js"))).length,
+      icon: Zap
+    },
+    { 
+      id: "nestjs", 
+      label: "NestJS", 
+      count: projects.filter(p => p.technologies.some(t => t.includes("NestJS"))).length,
+      icon: Code
+    },
+    { 
+      id: "ecommerce", 
+      label: "E-commerce", 
+      count: projects.filter(p => p.title.toLowerCase().includes("lux") || p.title.toLowerCase().includes("commerce") || p.description.toLowerCase().includes("e-commerce")).length,
+      icon: Award
+    },
+    { 
+      id: "team", 
+      label: "En équipe", 
+      count: projects.filter(p => {
+        const team = p.stats?.team?.toLowerCase() || "";
+        return team && !team.includes("solo") && (team.includes("développeurs") || team.includes("équipe") || /\d/.test(team));
+      }).length,
+      icon: Users
+    },
+    { 
+      id: "solo", 
+      label: "Solo", 
+      count: projects.filter(p => {
+        const team = p.stats?.team?.toLowerCase() || "";
+        return team.includes("solo") || (!team.includes("développeurs") && !team.includes("équipe") && !/\d/.test(team));
+      }).length,
+      icon: Zap
+    }
   ];
 
   const filteredProjects = projects.filter(project => {
     if (filter === "all") return true;
-    if (filter === "fullstack") return project.technologies.includes("React") && (project.technologies.includes("Node.js") || project.technologies.includes("Express.js"));
-    if (filter === "frontend") return project.technologies.includes("React") || project.technologies.includes("Next.js");
+    if (filter === "online") return project.live !== undefined && project.live !== "";
+    if (filter === "development") return !project.live || project.live === "";
+    if (filter === "nextjs") return project.technologies.some(t => t.includes("Next.js"));
+    if (filter === "nestjs") return project.technologies.some(t => t.includes("NestJS"));
+    if (filter === "ecommerce") {
+      const title = project.title.toLowerCase();
+      const desc = project.description.toLowerCase();
+      return title.includes("lux") || title.includes("commerce") || desc.includes("e-commerce");
+    }
     if (filter === "team") {
       const team = project.stats?.team?.toLowerCase() || "";
       return team && !team.includes("solo") && (team.includes("développeurs") || team.includes("équipe") || /\d/.test(team));
+    }
+    if (filter === "solo") {
+      const team = project.stats?.team?.toLowerCase() || "";
+      return team.includes("solo") || (!team.includes("développeurs") && !team.includes("équipe") && !/\d/.test(team));
     }
     return true;
   });
@@ -69,34 +122,38 @@ export default function Projects({ darkMode, onProjectClick }: ProjectsProps) {
 
           {/* Filtres */}
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4">
-            {categories.map((category) => (
-              <motion.button
-                key={category.id}
-                onClick={() => setFilter(category.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
-                  filter === category.id
-                    ? darkMode
-                      ? 'bg-[#3b82f6] text-white shadow-lg shadow-[#3b82f6]/30'
-                      : 'bg-[#3b82f6] text-white shadow-lg shadow-[#3b82f6]/20'
-                    : darkMode
-                      ? 'bg-[#1e293b] text-[#e2e8f0] border border-[#334155] hover:border-[#3b82f6]'
-                      : 'bg-white text-[#64748b] border border-[#e2e8f0] hover:border-[#3b82f6]'
-                }`}
-              >
-                {category.label}
-                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs ${
-                  filter === category.id
-                    ? 'bg-white/20 text-white'
-                    : darkMode
-                      ? 'bg-[#334155] text-[#94a3b8]'
-                      : 'bg-[#f1f5f9] text-[#64748b]'
-                }`}>
-                  {category.count}
-                </span>
-              </motion.button>
-            ))}
+            {categories.map((category) => {
+              const CategoryIcon = category.icon;
+              return (
+                <motion.button
+                  key={category.id}
+                  onClick={() => setFilter(category.id)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                    filter === category.id
+                      ? darkMode
+                        ? 'bg-[#3b82f6] text-white shadow-lg shadow-[#3b82f6]/30'
+                        : 'bg-[#3b82f6] text-white shadow-lg shadow-[#3b82f6]/20'
+                      : darkMode
+                        ? 'bg-[#1e293b] text-[#e2e8f0] border border-[#334155] hover:border-[#3b82f6]'
+                        : 'bg-white text-[#64748b] border border-[#e2e8f0] hover:border-[#3b82f6]'
+                  }`}
+                >
+                  <CategoryIcon className="w-4 h-4" />
+                  {category.label}
+                  <span className={`px-2 py-0.5 rounded-full text-xs ${
+                    filter === category.id
+                      ? 'bg-white/20 text-white'
+                      : darkMode
+                        ? 'bg-[#334155] text-[#94a3b8]'
+                        : 'bg-[#f1f5f9] text-[#64748b]'
+                  }`}>
+                    {category.count}
+                  </span>
+                </motion.button>
+              );
+            })}
           </div>
         </div>
 
