@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     siteName: "Portfolio Kishan",
     images: [
       {
-        url: "/avatar.svg",
-        width: 128,
-        height: 128,
-        alt: "Kishan - Développeur Full-Stack",
+        url: "/profile-photo.jpg",
+        width: 400,
+        height: 400,
+        alt: "Jeya Kishan Karunanithy - Développeur Full-Stack",
       },
     ],
     locale: "fr_FR",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kishan - Développeur Full-Stack",
     description: "Portfolio de Kishan, développeur full-stack. Passionné d'aviation, disponible en freelance et CDI/CDD.",
-    images: ["/avatar.svg"],
+    images: ["/profile-photo.jpg"],
   },
   robots: {
     index: true,
