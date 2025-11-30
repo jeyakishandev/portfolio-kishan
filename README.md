@@ -1,9 +1,11 @@
-# 🚀 Portfolio Terminal - Kishan Karunanithy
+# 🚀 Portfolio - Jeya Kishan Karunanithy
 
 <div align="center">
-  <img src="public/favicon.svg" alt="Terminal Icon" width="80" height="80">
+  <img src="public/favicon.svg" alt="Portfolio Icon" width="80" height="80">
   
-  **Interface terminal unique et interactive pour présenter mon parcours de développeur full-stack**
+  **Portfolio professionnel de développeur full-stack - Présentation de mes projets et compétences**
+  
+  [![Live Demo](https://img.shields.io/badge/🌐_Portfolio_En_Ligne-000000?style=for-the-badge)](https://jeyakishan-portfolio.vercel.app)
   
   [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -13,17 +15,18 @@
 
 ## 🎯 À propos
 
-Portfolio développeur avec une **interface terminal unique** qui permet de naviguer via des commandes ou des boutons interactifs. Conçu pour être accessible à tous, pas seulement aux développeurs.
+Portfolio professionnel développé avec Next.js 15 et TypeScript pour présenter mes projets, compétences et expériences. Conçu pour être simple, moderne et efficace pour les employeurs et clients freelance.
 
 ### ✨ Fonctionnalités principales
 
-- 🖥️ **Interface Terminal Interactive** - Navigation par commandes ou boutons
-- 🎨 **Modales Visuelles** - Présentation riche des projets et compétences
-- 🌓 **Mode Sombre/Clair** - Thème adaptatif avec scrollbar personnalisée
-- 📱 **Responsive Design** - Optimisé pour tous les appareils
+- 🎨 **Design Moderne** - Interface élégante avec animations fluides
+- 🌓 **Mode Sombre/Clair** - Thème adaptatif selon les préférences
+- 📱 **100% Responsive** - Optimisé pour mobile, tablette et desktop
 - 🎬 **Animations Fluides** - Transitions avec Framer Motion
-- 📝 **Formulaire de Contact** - Interaction directe avec le visiteur
-- 🎓 **Guide d'Utilisation** - Tutoriel automatique à l'arrivée
+- 📝 **Formulaire de Contact** - Interaction directe avec les visiteurs
+- 📄 **CV Téléchargeable** - Disponible en PDF
+- 🔍 **Filtres de Projets** - Recherche par technologie, statut, type
+- 📊 **Sections Complètes** - Projets, Compétences, Expérience, Contact
 
 ## 🛠️ Technologies
 
@@ -34,13 +37,8 @@ Portfolio développeur avec une **interface terminal unique** qui permet de navi
 - **Framer Motion** - Animations et transitions fluides
 - **Lucide React** - Icônes modernes et cohérentes
 
-### Internationalisation
-- **next-intl** - Support multilingue (FR/EN)
-- **Messages JSON** - Gestion centralisée des traductions
-
 ### Outils de Développement
 - **ESLint** - Linting du code
-- **Prettier** - Formatage automatique
 - **Git** - Contrôle de version
 - **GitHub** - Hébergement et collaboration
 
@@ -77,31 +75,14 @@ yarn dev
 http://localhost:3000
 ```
 
-## 🎮 Comment utiliser
+## 📱 Pages Disponibles
 
-### Navigation par Commandes
-```bash
-about      # À propos de moi
-skills     # Mes compétences techniques
-projects   # Mes projets réalisés
-experience # Mon parcours professionnel
-contact    # Informations de contact
-form       # Formulaire de contact interactif
-gallery    # Galerie visuelle des projets
-help       # Liste complète des commandes
-tutorial   # Guide d'utilisation
-visual     # Mode navigation visuelle
-clear      # Effacer le terminal
-```
-
-### Raccourcis Clavier
-- `Ctrl + V` - Mode visuel
-- `Ctrl + G` - Galerie
-- `Ctrl + H` - Aide
-- `Ctrl + L` - Effacer
-
-### Boutons Rapides
-Interface avec boutons en bas de l'écran pour navigation rapide.
+- **/** - Page d'accueil avec présentation
+- **/about** - À propos de moi
+- **/projects** - Mes projets avec filtres
+- **/skills** - Mes compétences techniques
+- **/experience** - Mon parcours professionnel
+- **/contact** - Formulaire de contact et informations
 
 ## 💼 Mon Parcours
 
@@ -112,46 +93,39 @@ Interface avec boutons en bas de l'écran pour navigation rapide.
 
 ### 💻 Expériences Professionnelles
 
-#### 🚀 Développeur Full-Stack Freelance – Makara Media (2025)
-- Refonte complète d'une plateforme SaaS de gestion multi-réseaux sociaux
-- Architecture scalable Node.js/TypeScript + React 19
-- Gestion multi-organisations, OAuth2, Stripe, fonctionnalités AI
+#### 🚀 Développeur Full-Stack – Makara Media (2025)
+- Développement d'une plateforme SaaS complète de gestion multi-réseaux sociaux
+- Architecture scalable Node.js/TypeScript + React 18
+- Gestion multi-organisations, OAuth2, intégrations APIs
 - Tests 90%+ de couverture, CI/CD, sécurité avancée
 
 #### 🎯 Stage Développeur Web – Makara Media (2025)
 - Refonte dashboard interne avec React + TypeScript
 - Composants dynamiques (statistiques, publications, carrousel)
 - Collaboration front/back avec Symfony/PHP + API REST
-- Participation UI/UX via maquettes Figma
 
 ### 🛠️ Compétences Techniques
 
 #### Développement Full-Stack
-- **Frontend** : React 19, Next.js, TypeScript, Tailwind CSS
-- **Backend** : Node.js, Express, Fastify, PostgreSQL, Prisma
-- **Authentification** : JWT, OAuth2, Argon2
-- **Paiements** : Stripe, gestion d'abonnements
-- **Tests** : Vitest, Testing Library (90%+ couverture)
+- **Frontend** : React 19, Next.js 14, TypeScript, Tailwind CSS, Framer Motion
+- **Backend** : Node.js, Express, NestJS, Fastify, PostgreSQL, Prisma, Sequelize
+- **Authentification** : JWT, OAuth2, Argon2, bcrypt
+- **Temps réel** : Socket.io
+- **Tests** : Jest, Vitest (90%+ couverture)
 
 #### Outils & Méthodologies
 - **Versioning** : Git/GitHub, workflows professionnels
-- **DevOps** : Docker, CI/CD, déploiement Vercel/Railway
+- **DevOps** : Docker, CI/CD, déploiement Vercel/Railway/Render
 - **Méthodologies** : Agile/Scrum, gestion d'équipe
-- **Design** : Figma, systèmes de design cohérents
+- **Documentation** : Swagger
 
 ## 🎨 Projets Principaux
 
-### 🚀 Projets Concrets
-- **GamerChallenges** - Plateforme collaborative de défis gaming
-- **DevBoard** - Application de gestion de projets pour développeurs  
-- **LuxTime** - Site e-commerce de montres de luxe
-- **À la conquête du monde** - Blog de voyage avec galerie photos
-
-### 🔬 Projets Exploratoires
-- **Agents IA** - Assistants intelligents pour automatisation
-- **SnackNow** - App géolocalisée pour snacks/restaurants
-- **PlanMyTrip AI** - Planificateur de voyages automatisé par IA
-- **AdminZero** - Assistant IA pour démarches administratives
+### 🚀 Projets Réalisés
+- **Time-Swap Network** - Plateforme d'échange de crédits temps (Next.js 14, NestJS, Socket.io)
+- **LuxTime** - E-commerce de montres de luxe (React, Node.js, PostgreSQL)
+- **GamerChallenges** - Plateforme collaborative de défis gaming (React 19, Express, PostgreSQL)
+- **À la Conquête du Monde** - Application de récits de voyage (React, Node.js, Prisma)
 
 ## 📱 Déploiement
 
@@ -161,22 +135,11 @@ npm install -g vercel
 vercel --prod
 ```
 
-### GitHub Pages
-```bash
-npm run build
-npm run export
-# Puis uploader le dossier 'out' sur GitHub Pages
-```
+Le projet est configuré pour être déployé facilement sur Vercel.
 
-## 🤝 Contribution
+## 🌐 Portfolio en Ligne
 
-Les contributions sont les bienvenues ! Pour contribuer :
-
-1. Fork le projet
-2. Créer une branche feature (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
+**🔗 [Voir le portfolio en ligne](https://jeyakishan-portfolio.vercel.app)**
 
 ## 📞 Contact
 
@@ -191,6 +154,6 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 ---
 
 <div align="center">
-  <p>Développé avec ❤️ par <strong>Kishan Karunanithy</strong></p>
-  <p>💡 <em>Un portfolio qui sort de l'ordinaire pour un développeur qui sort de l'ordinaire</em></p>
+  <p>Développé avec ❤️ par <strong>Jeya Kishan Karunanithy</strong></p>
+  <p>💡 <em>Portfolio professionnel pour employeurs et clients freelance</em></p>
 </div>
