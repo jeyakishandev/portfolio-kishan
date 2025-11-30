@@ -86,14 +86,16 @@ export const projects: Project[] = [
   {
     id: "a-la-conquete-du-monde",
     title: "À la Conquête du Monde",
-    description: "Application web fullstack moderne permettant aux utilisateurs de découvrir et partager des récits de voyage avec authentification, interactions sociales et mode sombre/clair.",
-    fullDescription: "À la Conquête du Monde est une application web fullstack moderne qui permet aux utilisateurs de découvrir et partager des récits de voyage. L'application offre une expérience utilisateur fluide avec un design responsive et un mode sombre/clair qui s'adapte aux préférences de chaque utilisateur. J'ai développé cette application pour mettre en pratique mes compétences en React, Node.js et les technologies modernes. L'objectif était de créer une interface moderne avec Tailwind CSS, des animations et micro-interactions, ainsi qu'un système complet de gestion de contenu avec authentification JWT, CRUD complet des articles, système de likes, favoris, commentaires et partage social.",
+    description: "Application web fullstack moderne permettant aux utilisateurs de découvrir et partager des récits de voyage avec authentification, interactions sociales, carte interactive et PWA.",
+    fullDescription: "À la Conquête du Monde est une application web fullstack moderne qui permet aux utilisateurs de découvrir et partager des récits de voyage. L'application offre une expérience utilisateur fluide avec un design responsive et un mode sombre/clair qui s'adapte aux préférences de chaque utilisateur. J'ai développé cette application pour mettre en pratique mes compétences en React, Node.js et les technologies modernes. L'objectif était de créer une interface moderne avec Tailwind CSS, des animations et micro-interactions, ainsi qu'un système complet de gestion de contenu avec authentification JWT, CRUD complet des articles, système de likes, favoris, commentaires et partage social. L'application inclut également une carte interactive des destinations avec Leaflet, une PWA installable avec mode offline, et des optimisations de performance (lazy loading, code splitting) pour un score Lighthouse optimal.",
     image: "/screenshots/homepage.png",
     technologies: [
       "React 18",
       "Vite",
       "React Router",
       "Tailwind CSS",
+      "Leaflet",
+      "React Leaflet",
       "Node.js",
       "Express.js",
       "Prisma ORM",
@@ -114,9 +116,13 @@ export const projects: Project[] = [
       "Commentaires sur les articles",
       "Partage social (Facebook, Twitter, WhatsApp)",
       "Catalogue de destinations avec filtres par continent",
+      "Carte interactive des destinations (Leaflet/OpenStreetMap)",
+      "PWA installable avec mode offline",
       "Compteur de vues et statistiques d'engagement",
       "Mode sombre/clair avec transitions fluides",
       "Design responsive mobile-first",
+      "Optimisations de performance (lazy loading, code splitting)",
+      "SEO optimisé (meta tags, Open Graph, Twitter Cards)",
       "Animations et glass-morphism"
     ],
     stats: {
