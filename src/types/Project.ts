@@ -19,6 +19,8 @@ export interface Project {
     components?: string;
     databaseModels?: string;
     features?: string;
+    testCoverage?: string;
+    database?: string;
   };
 }
 
