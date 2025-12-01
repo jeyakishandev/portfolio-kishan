@@ -162,8 +162,8 @@ export const projects: Project[] = [
     image: "/time-swap.png",
     video: "/api/placeholder/video",
     technologies: ["Next.js 14", "TypeScript", "NestJS", "Prisma", "PostgreSQL", "SQLite", "JWT", "Tailwind CSS", "Socket.io", "Docker", "Jest", "bcrypt", "Axios", "Recharts", "Zod"],
-    github: "https://github.com/votre-username/Time-Swap",
-    githubBackend: "https://github.com/votre-username/Time-Swap",
+    github: "https://github.com/jeyakishandev/Time-Swap",
+    live: "https://timeswap-frontend-mu5v.onrender.com",
     features: [
       "Authentification sécurisée avec JWT et cookies HTTP-only",
       "Système de réinitialisation de mot de passe avec tokens sécurisés",
@@ -184,7 +184,7 @@ export const projects: Project[] = [
       "Gestion des erreurs centralisée avec filtres personnalisés"
     ],
     stats: {
-      duration: "2-3 mois",
+      duration: "1 mois",
       team: "Solo",
       linesOfCode: "~12 400 lignes",
       endpoints: "55+ routes API",
